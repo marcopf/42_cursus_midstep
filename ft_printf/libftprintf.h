@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:39:46 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/01/22 16:53:52 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/01/22 17:07:07 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,4 @@ void	ft_putnbr(int n);
 void	ft_putstr(const char *str);
 void	ft_putchar(const char c);
 
-# endif
+#endif

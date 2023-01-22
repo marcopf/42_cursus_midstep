@@ -1,4 +1,4 @@
-NAME	= libftrpintf.a
+NAME	= libftprintf.a
 HEADER	= ${NAME:.a=.h}
 SRCS	= ft_printf.c hex_utils.c mini_libft.c printf_utils.c ptr_utils.c write_utils.c
 OBJS	= ${SRCS:.c=.o}

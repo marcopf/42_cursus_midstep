@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 12:28:40 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/01/19 14:54:02 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/01/23 13:00:34 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strchr(const char *s, int c)
 		if (s[i] == (unsigned char) c)
 			return ((char *) s + i);
 	}
-	if (s[i] == c)
+	if (s[i] == (unsigned char)c)
 		return ((char *) s + i);
 	return (0);
 }

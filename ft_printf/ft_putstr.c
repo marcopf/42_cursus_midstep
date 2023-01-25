@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 12:25:17 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/01/25 11:36:25 by mpaterno         ###   ########.fr       */
+/*   Created: 2023/01/25 11:35:29 by mpaterno          #+#    #+#             */
+/*   Updated: 2023/01/25 11:35:36 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	*ft_calloc(size_t n, size_t dim)
+int	ft_putstr(const char *str)
 {
-	void	*val;
+	int	i;
 
-	val = (void *) malloc(n * dim);
-	if (!val)
-		return (0);
-	ft_bzero(val, n * dim);
-	return (val);
+	if (!str)
+		return (write(1, "(null)", 6));
+	else
+	{
+		i = 0;
+		while (str[i])
+			write(1, &str[i++], 1);
+	}
+	return (ft_strlen(str));
 }

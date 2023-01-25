@@ -1,6 +1,6 @@
 NAME	= libftprintf.a
 HEADER	= ${NAME:.a=.h}
-SRCS	= ft_printf.c hex_utils.c ptr_utils.c libft.c ft_itoa.c ft_strdup.c ft_calloc.c
+SRCS	= ft_printf.c hex_utils.c ptr_utils.c printf_utils.c ft_itoa.c ft_strdup.c ft_calloc.c ft_bzero.c ft_putstr.c ft_strlen.c
 OBJS	= ${SRCS:.c=.o}
 BOBJS	= ${BSRCS:.c=.o}
 FLAGS	= -Wall -Werror -Wextra

@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 11:36:02 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/01/26 13:40:57 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/01/27 09:43:08 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlen(const char *str);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *str);
+char	*get_next_line(int fd);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 11:17:14 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/01/27 16:31:43 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/01/27 22:34:09 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ char	*get_line(int fd)
 	int		i;
 
 	flag = 1;
-	if (fd < 0 || fd >= 1000)
-		return (0);
 	ret = ft_strdup("");
 	buff[BUFFER_SIZE] = 0;
 	while (ft_strchr(ret, '\n') == 0 && flag)
@@ -65,35 +63,42 @@ char	*get_line(int fd)
 	return (ret);
 }
 
-char	**parser(char *str)
+char	**parser(char *str, int len0)
 {
 	char	**ret;
-	int		len0;
 	int		len1;
+	char	*chr;
 
 	if (!str)
 		return (0);
-	len0 = (ft_strchr(str, '\n') + 1) - str + 1;
-	if (ft_strchr(str, '\n') == 0)
+	chr = ft_strchr(str, '\n');
+	len0 = 0;
+	while (str[len0] && str[len0] != '\n')
+		len0++;
+	len0++;
+	if (chr != 0)
+		len0 = ((chr + 1) - str) + 1;
+	if (chr == 0)
 		len1 = 0;
 	else
-		len1 = ft_strlen((ft_strchr(str, '\n') + 1)) + 1;
+		len1 = ft_strlen(chr + 1) + 1;
 	ret = (char **) malloc(2 * sizeof(char *));
 	ret[0] = (char *)malloc((len0) * sizeof(char));
 	ret[1] = (char *)malloc((len1) * sizeof(char));
 	ft_strlcpy(ret[0], str, len0);
 	if (len1 > 0)
-		ft_strlcpy(ret[1], (ft_strchr(str, '\n') + 1), len1);
+		ft_strlcpy(ret[1], (chr + 1), len1);
 	free(str);
 	return (ret);
 }
 
-void	free_all(char *s1, char *s2, char **s3, char *s4)
+void	free_all(char **strs, char *str, char *buff)
 {
-	free(s1);
-	free(s2);
-	free(s3);
-	free(s4);
+	ft_strlcpy(buff, strs[1], ft_strlen(strs[1]) + 1);
+	free(strs[0]);
+	free(strs[1]);
+	free(strs);
+	free(str);
 }
 
 char	*get_next_line(int fd)
@@ -104,6 +109,8 @@ char	*get_next_line(int fd)
 	char		**strs;
 	char		*ret;
 
+	if (fd < 0 || fd >= 1000 || BUFFER_SIZE <= 0)
+		return (0);
 	if (ft_strchr(buff, '\n'))
 		return (print_remain(buff));
 	str = get_line(fd);
@@ -117,10 +124,9 @@ char	*get_next_line(int fd)
 		return (str);
 	full = ft_strdup(buff);
 	full = ft_strjoin(full, str);
-	strs = parser(full);
+	strs = parser(full, 0);
 	ret = ft_strdup(strs[0]);
-	ft_strlcpy(buff, strs[1], ft_strlen(strs[1]) + 1);
-	free_all(strs[0], strs[1], strs, str);
+	free_all(strs, str, buff);
 	return (ret);
 }
 
@@ -129,30 +135,30 @@ char	*get_next_line(int fd)
 // 	int fd;
 // 	char *str = 0;
 
-// 	fd = open("/Users/marcopaternostofrosi/Documents/42_cursus/get_next_line/gnlTester/files/multiple_line_no_nl", O_RDONLY);
-// 	str=get_next_line(fd);
-// 	printf("%s", str);
-// 	free(str);
-// 		str=get_next_line(fd);
-// 	printf("%s", str);
-// 	free(str);
-// 		str=get_next_line(fd);
-// 	printf("%s", str);
-// 	free(str);
-// 		str=get_next_line(fd);
-// 	printf("%s", str);
-// 	free(str);
-// 		str=get_next_line(fd);
-// 	printf("%s", str);
-// 	free(str);
-// 	// 	str=get_next_line(fd);
-// 	// printf("%s", str);
-// 	// free(str);
-// 	// while ((str=get_next_line(fd)))
-// 	// {
-// 	// 	printf("%s", str);
-// 	// 	free(str);
-// 	// }
-// 	//free(str);
-// 	close(fd);
-// }
+// 	fd = open("/Users/marcopaternostofrosi/Documents/42_cursus/get_next_line/gnlTester/files/empty", O_RDONLY);
+	// str=get_next_line(fd);
+	// printf("%s", str);
+	// free(str);
+	// 	str=get_next_line(fd);
+	// printf("%s", str);
+	// free(str);
+	// 	str=get_next_line(fd);
+	// printf("%s", str);
+	// free(str);
+	// 	str=get_next_line(fd);
+	// printf("%s", str);
+	// free(str);
+	// 	str=get_next_line(fd);
+	// printf("%s", str);
+	// free(str);
+	// 	str=get_next_line(fd);
+	// printf("%s", str);
+	// free(str);
+	// while ((str=get_next_line(fd)))
+	// {
+	// 	printf("%s", str);
+	// 	free(str);
+	// }
+	// free(str);
+	// close(fd);
+}

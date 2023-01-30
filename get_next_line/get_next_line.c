@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 11:17:14 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/01/27 22:34:09 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/01/30 12:22:27 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*get_line(int fd)
 			buff[i] = 0;
 		flag = read(fd, buff, BUFFER_SIZE);
 		ret = ft_strjoin(ret, buff);
-		if (flag == 0 && !*ret)
+		if (flag <= 0 && !*ret)
 		{
 			free(ret);
 			return (0);
@@ -109,8 +109,8 @@ char	*get_next_line(int fd)
 	char		**strs;
 	char		*ret;
 
-	if (fd < 0 || fd >= 1000 || BUFFER_SIZE <= 0)
-		return (0);
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
 	if (ft_strchr(buff, '\n'))
 		return (print_remain(buff));
 	str = get_line(fd);
@@ -128,37 +128,4 @@ char	*get_next_line(int fd)
 	ret = ft_strdup(strs[0]);
 	free_all(strs, str, buff);
 	return (ret);
-}
-
-// int main(void)
-// {
-// 	int fd;
-// 	char *str = 0;
-
-// 	fd = open("/Users/marcopaternostofrosi/Documents/42_cursus/get_next_line/gnlTester/files/empty", O_RDONLY);
-	// str=get_next_line(fd);
-	// printf("%s", str);
-	// free(str);
-	// 	str=get_next_line(fd);
-	// printf("%s", str);
-	// free(str);
-	// 	str=get_next_line(fd);
-	// printf("%s", str);
-	// free(str);
-	// 	str=get_next_line(fd);
-	// printf("%s", str);
-	// free(str);
-	// 	str=get_next_line(fd);
-	// printf("%s", str);
-	// free(str);
-	// 	str=get_next_line(fd);
-	// printf("%s", str);
-	// free(str);
-	// while ((str=get_next_line(fd)))
-	// {
-	// 	printf("%s", str);
-	// 	free(str);
-	// }
-	// free(str);
-	// close(fd);
 }

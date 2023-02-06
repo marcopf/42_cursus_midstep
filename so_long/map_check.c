@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 15:13:30 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/05 20:50:03 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/06 14:02:00 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_in_set(char c)
 	char	*set;
 	int		i;
 
-	set = "01CEP";
+	set = "01CEPG";
 	i = 0;
 	while (set[i])
 	{

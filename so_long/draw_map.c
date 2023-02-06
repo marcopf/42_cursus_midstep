@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 15:13:16 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/05 22:20:02 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/06 16:07:56 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ void	player_imgs_init(t_game *game)
 	game->player.left = mlx_xpm_file_to_image(game->mlx, "imgs/player_left.xpm",
 			&game->imgs.img_width, &game->imgs.img_height);
 	game->player.right = mlx_xpm_file_to_image(game->mlx, "imgs/player_right.xpm",
+			&game->imgs.img_width, &game->imgs.img_height);
+	game->charizard.patrol_a = mlx_xpm_file_to_image(game->mlx, "imgs/charizard0.xpm",
+			&game->imgs.img_width, &game->imgs.img_height);
+	game->charizard.patrol_b = mlx_xpm_file_to_image(game->mlx, "imgs/charizard1.xpm",
 			&game->imgs.img_width, &game->imgs.img_height);
 }
 
@@ -43,6 +47,8 @@ void	img_init(t_game *game)
 	game->imgs.c_door = mlx_xpm_file_to_image(game->mlx, "imgs/closed-door.xpm",
 			&game->imgs.img_width, &game->imgs.img_height);
 	game->imgs.player = mlx_xpm_file_to_image(game->mlx, "imgs/player_bottom.xpm",
+			&game->imgs.img_width, &game->imgs.img_height);
+	game->imgs.patrol = mlx_xpm_file_to_image(game->mlx, "imgs/charizard0.xpm",
 			&game->imgs.img_width, &game->imgs.img_height);
 }
 
@@ -69,6 +75,13 @@ void	selector(t_game *game, char c)
 		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.floor,
 			game->imgs.offset_x, game->imgs.offset_y);
 		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.player,
+			game->imgs.offset_x, game->imgs.offset_y);
+	}
+	else if (c == 'G')
+	{
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.floor,
+			game->imgs.offset_x, game->imgs.offset_y);
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.patrol,
 			game->imgs.offset_x, game->imgs.offset_y);
 	}
 }

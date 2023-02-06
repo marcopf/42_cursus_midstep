@@ -1,5 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   structs.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/06 16:06:26 by mpaterno          #+#    #+#             */
+/*   Updated: 2023/02/06 16:06:39 by mpaterno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+typedef struct e_charizard{
+	void	*patrol_a;
+	void	*patrol_b;
+	int		x;
+	int		y;
+}	t_char;
 
 typedef struct s_image {
 	void	*floor;
@@ -8,6 +27,7 @@ typedef struct s_image {
 	void	*open_door;
 	void	*player;
 	void	*c_door;
+	void	*patrol;
 	int		offset_x;
 	int		offset_y;
 	int		img_width;
@@ -31,7 +51,9 @@ typedef struct e_game {
 	void		*mlx_win;
 	t_imgs		imgs;
 	t_player	player;
+	t_char		charizard;
 	char		**map;
+	int			frame;
 	int			moves;
 	int			img_width;
 	int			img_height;

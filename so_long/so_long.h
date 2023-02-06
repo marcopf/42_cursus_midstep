@@ -1,13 +1,13 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include "mlx/mlx.h"
 # include "structs.h"
 # include <time.h>
+# include "ft_printf/libftprintf.h"
 
 char	*ft_strjoin(const char *s1, const char *s2);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
@@ -31,7 +31,10 @@ void	locate_player(t_game *game);
 void	collectibles_setter(t_game *game);
 int		can_we_get_out(char **map);
 void	finish_game(t_game *game);
-int     move_charizard(t_game *game);
-void	locate_charizard(t_game *game);
+int		move_charizard(t_game *game);
+int		locate_charizard(t_game *game);
+int		create_trgb(int t, int r, int g, int b);
+void	win_game(t_game *game);
+void	game_over(t_game *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 15:13:40 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/05 16:01:39 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/06 21:28:20 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,17 +81,17 @@ void print_mat(char **strs)
 	int j = 0;
 	int i = 0;
 
-	printf("\n\n");
+	ft_printf("\n\n");
 	while (strs[i])
 	{
 		while (strs[i][j])
 		{
-			printf(" %c ", strs[i][j]);
+			ft_printf(" %c ", strs[i][j]);
 			j++;
 		}
-		printf("\n");
+		ft_printf("\n");
 		j = 0;
 		i++;
 	}
-	printf("\n\n");
+	ft_printf("\n\n");
 }

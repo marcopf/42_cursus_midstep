@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 19:36:38 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/06 14:43:41 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/06 23:02:16 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	move_player_up(t_game *game)
 		else if (game->map[y - 1][x] == 'E' && game->done == 0)
 			return ;
 		else if (game->map[y - 1][x] == 'E' && game->done)
-			finish_game(game);
+			win_game(game);
 		else if (game->map[y - 1][x] == 'G')
-			finish_game(game);
+			game_over(game);
 		game->imgs.player = game->player.top;
-		printf("moving up: %d\n", game->player.moves);
+		ft_printf("moving up: %d\n", game->player.moves);
 		game->player.moves++;
 		game->map[y][x] = '0';
 		game->map[y - 1][x] = 'P';
@@ -53,11 +53,11 @@ void	move_player_down(t_game *game)
 		else if (game->map[y + 1][x] == 'E' && game->done == 0)
 			return ;
 		else if (game->map[y + 1][x] == 'E' && game->done)
-			finish_game(game);
+			win_game(game);
 		else if (game->map[y + 1][x] == 'G')
-			finish_game(game);
+			game_over(game);
 		game->imgs.player = game->player.bottom;
-		printf("moving down: %d\n", game->player.moves);
+		ft_printf("moving down: %d\n", game->player.moves);
 		game->player.moves++;
 		game->map[y][x] = '0';
 		game->map[y + 1][x] = 'P';
@@ -79,12 +79,12 @@ void	move_player_left(t_game *game)
 		else if (game->map[y][x - 1] == 'E' && game->done == 0)
 			return ;
 		else if (game->map[y][x - 1] == 'E' && game->done)
-			finish_game(game);
+			win_game(game);
 		else if (game->map[y][x - 1] == 'G')
-			finish_game(game);
+			game_over(game);
 		game->imgs.player = game->player.left;
 		game->player.moves++;
-		printf("moving left: %d\n", game->player.moves);
+		ft_printf("moving left: %d\n", game->player.moves);
 		game->map[y][x] = '0';
 		game->map[y][x - 1] = 'P';
 	}
@@ -105,14 +105,14 @@ void	move_player_right(t_game *game)
 		else if (game->map[y][x + 1] == 'E' && game->done == 0)
 			return ;
 		else if (game->map[y][x + 1] == 'E' && game->done)
-			finish_game(game);
+			win_game(game);
 		else if (game->map[y][x + 1] == 'G')
-			finish_game(game);
+			game_over(game);
 		game->imgs.player = game->player.right;
 		game->player.moves++;
 		game->map[y][x] = '0';
 		game->map[y][x + 1] = 'P';
-		printf("moving right: %d\n", game->player.moves);
+		ft_printf("moving right: %d\n", game->player.moves);
 	}
 }
 

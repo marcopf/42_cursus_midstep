@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 19:36:38 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/06 16:36:45 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/06 22:50:11 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	move_char_up(t_game *game)
 	int	y;
 
 	locate_charizard(game);
-	x = game->player.x;
-	y = game->player.y;
+	x = game->charizard.x;
+	y = game->charizard.y;
 	if (game->map[y - 1][x] != '1')
 	{
 		if (game->map[y - 1][x] == 'C')
@@ -29,7 +29,7 @@ void	move_char_up(t_game *game)
 		else if (game->map[y - 1][x] == 'E')
 			return ;
 		else if (game->map[y - 1][x] == 'P')
-			finish_game(game);
+			game_over(game);
 		game->map[y][x] = '0';
 		game->map[y - 1][x] = 'G';
 	}
@@ -41,8 +41,8 @@ void	move_char_down(t_game *game)
 	int	y;
 
 	locate_charizard(game);
-	x = game->player.x;
-	y = game->player.y;
+	x = game->charizard.x;
+	y = game->charizard.y;
 	if (game->map[y + 1][x] != '1')
 	{
 		if (game->map[y + 1][x] == 'C')
@@ -52,7 +52,7 @@ void	move_char_down(t_game *game)
 		else if (game->map[y + 1][x] == 'E')
 			return ;
 		else if (game->map[y + 1][x] == 'P')
-			finish_game(game);
+			game_over(game);
 		game->map[y][x] = '0';
 		game->map[y + 1][x] = 'G';
 	}
@@ -64,8 +64,8 @@ void	move_char_left(t_game *game)
 	int	y;
 
 	locate_charizard(game);
-	x = game->player.x;
-	y = game->player.y;
+	x = game->charizard.x;
+	y = game->charizard.y;
 	if (game->map[y][x - 1] != '1')
 	{
 		if (game->map[y][x - 1] == 'C')
@@ -75,7 +75,7 @@ void	move_char_left(t_game *game)
 		else if (game->map[y][x - 1] == 'E')
 			return ;
 		else if (game->map[y][x - 1] == 'P')
-			finish_game(game);
+			game_over(game);
 		game->map[y][x] = '0';
 		game->map[y][x - 1] = 'G';
 	}
@@ -87,8 +87,8 @@ void	move_char_right(t_game *game)
 	int	y;
 
 	locate_charizard(game);
-	x = game->player.x;
-	y = game->player.y;
+	x = game->charizard.x;
+	y = game->charizard.y;
 	if (game->map[y][x + 1] != '1')
 	{
 		if (game->map[y][x + 1] == 'C')
@@ -98,7 +98,7 @@ void	move_char_right(t_game *game)
 		else if (game->map[y][x + 1] == 'E')
 			return ;
 		else if (game->map[y][x + 1] == 'P')
-			finish_game(game);
+			game_over(game);
 		game->map[y][x] = '0';
 		game->map[y][x + 1] = 'G';
 	}
@@ -108,6 +108,8 @@ int	move_charizard(t_game *game)
 {
 	int	random;
 
+	if (!locate_charizard(game))
+		return (0);
 	if (game->frame != 29)
 		return (0);
 	random = rand() % 4;

@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 15:13:16 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/06 16:07:56 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/06 22:02:41 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	player_imgs_init(t_game *game)
 void	img_init(t_game *game)
 {
 	game->imgs.offset_x = 0;
-	game->imgs.offset_y = 0;
+	game->imgs.offset_y = 30;
 	game->player.moves = 0;
 	game->done = 0;
 	collectibles_setter(game);
@@ -93,7 +93,7 @@ void	draw_map(t_game *game)
 
 	i = -1;
 	game->imgs.offset_x = 0;
-	game->imgs.offset_y = 0;
+	game->imgs.offset_y = 30;
 	while (++i < get_y(game->map))
 	{
 		j = -1;

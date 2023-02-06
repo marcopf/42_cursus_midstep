@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 15:13:30 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/06 14:02:00 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/06 22:36:33 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,21 +82,27 @@ int	can_we_get_out(char **map)
 {
 	int	i;
 	int	j;
+	int	counter[3];
 
-	i = 0;
-	while (map[i])
+	i = -1;
+	counter[0] = 0;
+	counter[1] = 0;
+	counter[2] = 0;
+	while (map[++i])
 	{
-		j = 0;
-		while (map[i][j] != '\n')
+		j = -1;
+		while (map[i][++j] != '\n')
 		{
 			if (map[i][j] == 'E')
-			{
-				return (1);
-			}
-			j++;
+				counter[0] = 1;
+			if (map[i][j] == 'C')
+				counter[1] = 1;
+			if (map[i][j] == 'P')
+				counter[2] = 1;
 		}
-		i++;
 	}
+	if (counter[0] && counter[1] && counter[2])
+		return (1);
 	return (0);
 }
 

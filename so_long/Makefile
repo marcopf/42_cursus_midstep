@@ -12,20 +12,23 @@ RM		= rm -f
 	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
 
 all: ${NAME}
-	$(CC) $(OBJS) -L . -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	make -C ./ft_printf
+	make -C ./mlx
+	cp ./mlx/libmlx.dylib .
+	cp ./ft_printf/libftprintf.a .
+	$(CC) $(OBJS) -L . -lmlx -L . -lftprintf -framework OpenGL -framework AppKit -o $(NAME)
 
 ${NAME}: ${OBJS}
 
 clean:
 	make clean -C ./mlx
+	make fclean -C ./ft_printf
 	rm -rf libmlx.dylib
 	${RM} ${OBJS}
 
 fclean: clean
+	rm libmlx.dylib libftprintf.a
 	${RM} ${NAME}
 
 re: fclean all
 
-mlx:
-	make -C ./mlx
-	cp ./mlx/libmlx.dylib .

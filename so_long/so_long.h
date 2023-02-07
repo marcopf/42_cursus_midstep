@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/07 14:44:46 by mpaterno          #+#    #+#             */
+/*   Updated: 2023/02/07 15:23:10 by mpaterno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
@@ -36,5 +48,6 @@ int		locate_charizard(t_game *game);
 int		create_trgb(int t, int r, int g, int b);
 void	win_game(t_game *game);
 void	game_over(t_game *game);
+int	    locate_door(t_game *game);
 
 #endif

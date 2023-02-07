@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 19:36:38 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/06 23:02:16 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/07 15:26:38 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ void	move_player_up(t_game *game)
 		game->player.moves++;
 		game->map[y][x] = '0';
 		game->map[y - 1][x] = 'P';
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.player,
+			(x) * 61, ((y - 1) * 61) + 30);
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.floor,
+			(x) * 61, ((y) * 61) + 30);
 	}
 }
 
@@ -61,6 +65,10 @@ void	move_player_down(t_game *game)
 		game->player.moves++;
 		game->map[y][x] = '0';
 		game->map[y + 1][x] = 'P';
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.player,
+			(x) * 61, ((y + 1) * 61) + 30);
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.floor,
+			(x) * 61, ((y) * 61) + 30);
 	}
 }
 
@@ -87,6 +95,10 @@ void	move_player_left(t_game *game)
 		ft_printf("moving left: %d\n", game->player.moves);
 		game->map[y][x] = '0';
 		game->map[y][x - 1] = 'P';
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.player,
+			(x - 1) * 61, ((y) * 61) + 30);
+				mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.floor,
+			(x) * 61, ((y) * 61) + 30);
 	}
 }
 
@@ -113,6 +125,10 @@ void	move_player_right(t_game *game)
 		game->map[y][x] = '0';
 		game->map[y][x + 1] = 'P';
 		ft_printf("moving right: %d\n", game->player.moves);
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.floor,
+			(x) * 61, ((y) * 61) + 30);
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.player,
+			(x + 1) * 61, ((y) * 61) + 30);
 	}
 }
 
@@ -134,7 +150,9 @@ int	key_hook(int key, t_game *game)
 	}
 	if (game->player.collectibles == 0)
 	{
-		game->imgs.c_door = game->imgs.open_door;
+		locate_door(game);
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.open_door,
+			(game->door_x) * 61, ((game->door_y) * 61) + 30);
 		game->done = 1;
 	}
 	return (0);

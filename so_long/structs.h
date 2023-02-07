@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 16:06:26 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/06 16:06:39 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/07 16:17:27 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,14 @@ typedef struct e_player{
 	int		collectibles;
 }	t_player;
 
+typedef struct s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
+
 typedef struct e_game {
 	void		*mlx;
 	void		*mlx_win;
@@ -58,6 +66,9 @@ typedef struct e_game {
 	int			img_width;
 	int			img_height;
 	int			done;
+	int			door_x;
+	int			door_y;
+	t_data		img;
 
 }	t_game;
 

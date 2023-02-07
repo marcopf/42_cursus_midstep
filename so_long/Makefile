@@ -14,8 +14,8 @@ RM		= rm -f
 all: ${NAME}
 	make -C ./ft_printf
 	make -C ./mlx
-	cp ./mlx/libmlx.dylib .
-	cp ./ft_printf/libftprintf.a .
+	@cp ./mlx/libmlx.dylib .
+	@cp ./ft_printf/libftprintf.a .
 	$(CC) $(OBJS) -L . -lmlx -L . -lftprintf -framework OpenGL -framework AppKit -o $(NAME)
 
 ${NAME}: ${OBJS}

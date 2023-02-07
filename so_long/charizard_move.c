@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 19:36:38 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/06 22:50:11 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/07 16:59:56 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ void	move_char_up(t_game *game)
 			game_over(game);
 		game->map[y][x] = '0';
 		game->map[y - 1][x] = 'G';
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->charizard.patrol_b,
+			(x) * 61, ((y - 1) * 61) + 30);
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.floor,
+			(x) * 61, ((y) * 61) + 30);
 	}
 }
 
@@ -55,6 +59,10 @@ void	move_char_down(t_game *game)
 			game_over(game);
 		game->map[y][x] = '0';
 		game->map[y + 1][x] = 'G';
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->charizard.patrol_a,
+			(x) * 61, ((y + 1) * 61) + 30);
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.floor,
+			(x) * 61, ((y) * 61) + 30);
 	}
 }
 
@@ -78,6 +86,10 @@ void	move_char_left(t_game *game)
 			game_over(game);
 		game->map[y][x] = '0';
 		game->map[y][x - 1] = 'G';
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->charizard.patrol_b,
+			(x - 1) * 61, ((y) * 61) + 30);
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.floor,
+			(x) * 61, ((y) * 61) + 30);
 	}
 }
 
@@ -101,18 +113,33 @@ void	move_char_right(t_game *game)
 			game_over(game);
 		game->map[y][x] = '0';
 		game->map[y][x + 1] = 'G';
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->charizard.patrol_a,
+			(x + 1) * 61, ((y) * 61) + 30);
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.floor,
+			(x) * 61, ((y) * 61) + 30);
 	}
 }
 
 int	move_charizard(t_game *game)
 {
 	int	random;
+	static int	flag;
 
 	if (!locate_charizard(game))
 		return (0);
-	if (game->frame != 29)
+	if (game->frame != 15 && game->frame != 45)
 		return (0);
 	random = rand() % 4;
+	if (flag)
+	{
+		game->imgs.patrol = game->charizard.patrol_a;
+		flag = 1;
+	}
+	else
+	{
+		game->imgs.patrol = game->charizard.patrol_b;
+		flag = 0;
+	}
 	if (random == 0)
 		move_char_right(game);
 	else if (random == 1)

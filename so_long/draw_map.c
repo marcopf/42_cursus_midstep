@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 15:13:16 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/07 15:08:25 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/07 22:46:49 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,24 @@ void	img_init(t_game *game)
 			&game->imgs.img_width, &game->imgs.img_height);
 }
 
+void	selector_2(t_game *game, char c)
+{
+	if (c == 'P')
+	{
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.floor,
+			game->imgs.offset_x, game->imgs.offset_y);
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.player,
+			game->imgs.offset_x, game->imgs.offset_y);
+	}
+	else if (c == 'G')
+	{
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.floor,
+			game->imgs.offset_x, game->imgs.offset_y);
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.patrol,
+			game->imgs.offset_x, game->imgs.offset_y);
+	}
+}
+
 void	selector(t_game *game, char c)
 {
 	if (c == '1')
@@ -70,20 +88,8 @@ void	selector(t_game *game, char c)
 		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.item,
 			game->imgs.offset_x, game->imgs.offset_y);
 	}
-	else if (c == 'P')
-	{
-		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.floor,
-			game->imgs.offset_x, game->imgs.offset_y);
-		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.player,
-			game->imgs.offset_x, game->imgs.offset_y);
-	}
-	else if (c == 'G')
-	{
-		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.floor,
-			game->imgs.offset_x, game->imgs.offset_y);
-		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.patrol,
-			game->imgs.offset_x, game->imgs.offset_y);
-	}	
+	else
+		selector_2(game, c);
 }
 
 void	draw_map(t_game *game)

@@ -6,20 +6,14 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 19:36:38 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/07 15:26:38 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/07 22:56:24 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	move_player_up(t_game *game)
+void	move_player_up(t_game *game, int x, int y)
 {
-	int	x;
-	int	y;
-
-	locate_player(game);
-	x = game->player.x;
-	y = game->player.y;
 	if (game->map[y - 1][x] != '1')
 	{
 		if (game->map[y - 1][x] == 'C')
@@ -42,14 +36,8 @@ void	move_player_up(t_game *game)
 	}
 }
 
-void	move_player_down(t_game *game)
+void	move_player_down(t_game *game, int x, int y)
 {
-	int	x;
-	int	y;
-
-	locate_player(game);
-	x = game->player.x;
-	y = game->player.y;
 	if (game->map[y + 1][x] != '1')
 	{
 		if (game->map[y + 1][x] == 'C')
@@ -72,14 +60,8 @@ void	move_player_down(t_game *game)
 	}
 }
 
-void	move_player_left(t_game *game)
+void	move_player_left(t_game *game, int x, int y)
 {
-	int	x;
-	int	y;
-
-	locate_player(game);
-	x = game->player.x;
-	y = game->player.y;
 	if (game->map[y][x - 1] != '1')
 	{
 		if (game->map[y][x - 1] == 'C')
@@ -97,19 +79,13 @@ void	move_player_left(t_game *game)
 		game->map[y][x - 1] = 'P';
 		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.player,
 			(x - 1) * 61, ((y) * 61) + 30);
-				mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.floor,
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->imgs.floor,
 			(x) * 61, ((y) * 61) + 30);
 	}
 }
 
-void	move_player_right(t_game *game)
+void	move_player_right(t_game *game, int x, int y)
 {
-	int	x;
-	int	y;
-
-	locate_player(game);
-	x = game->player.x;
-	y = game->player.y;
 	if (game->map[y][x + 1] != '1')
 	{
 		if (game->map[y][x + 1] == 'C')
@@ -134,14 +110,16 @@ void	move_player_right(t_game *game)
 
 int	key_hook(int key, t_game *game)
 {
-	if (key == 2)
-		move_player_right(game);
-	else if (key == 13)
-		move_player_up(game);
-	else if (key == 0)
-		move_player_left(game);
-	else if (key == 1)
-		move_player_down(game);
+	ft_printf("%d\n\n", key);
+	locate_player(game);
+	if (key == 2 || key == 124)
+		move_player_right(game, game->player.x, game->player.y);
+	else if (key == 13 || key == 126)
+		move_player_up(game, game->player.x, game->player.y);
+	else if (key == 0 || key == 123)
+		move_player_left(game, game->player.x, game->player.y);
+	else if (key == 1 || key == 125)
+		move_player_down(game, game->player.x, game->player.y);
 	else if (key == 53)
 	{
 		free_map(game->map);
@@ -155,5 +133,6 @@ int	key_hook(int key, t_game *game)
 			(game->door_x) * 61, ((game->door_y) * 61) + 30);
 		game->done = 1;
 	}
+	print_moves(game);
 	return (0);
 }

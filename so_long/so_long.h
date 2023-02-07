@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:44:46 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/07 15:23:10 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/07 22:49:06 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int		is_valid_map(char **map);
 void	draw_map(t_game *game);
 void	img_init(t_game *game);
 void	free_map(char **strs);
-void	print_mat(char **strs);
 int		key_hook(int key, t_game *game);
 void	locate_player(t_game *game);
 void	collectibles_setter(t_game *game);
@@ -48,6 +47,12 @@ int		locate_charizard(t_game *game);
 int		create_trgb(int t, int r, int g, int b);
 void	win_game(t_game *game);
 void	game_over(t_game *game);
-int	    locate_door(t_game *game);
+int		locate_door(t_game *game);
+void	print_moves(t_game *game);
+void	smart_move(t_game *game);
+int		move_char_up(t_game *game);
+int		move_char_down(t_game *game);
+int		move_char_left(t_game *game);
+int		move_char_right(t_game *game);
 
 #endif

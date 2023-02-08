@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 19:36:38 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/07 22:53:51 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/08 09:52:16 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ int	move_charizard(t_game *game)
 
 	if (!locate_charizard(game))
 		return (0);
-	if (game->frame != 15 && game->frame != 45)
+	if (game->frame != 15)
 		return (0);
 	random = rand() % 4;
 	smart_move(game);
@@ -143,7 +143,7 @@ int	move_charizard(t_game *game)
 		move_char_right(game);
 	else if (random == 1)
 		move_char_up(game);
-	else if (random == 2)
+	if (random == 2)
 		move_char_left(game);
 	else if (random == 3)
 		move_char_down(game);

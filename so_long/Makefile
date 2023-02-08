@@ -1,6 +1,7 @@
 NAME	= so_long
 HEADER	= ${NAME:.a=.h}
-SRCS	= main.c map_parser.c map_check.c get_next_line.c get_next_line_utils.c draw_map.c player_func.c player_move.c game_func.c charizard_move.c print_moves.c
+SRCS	= main.c map_parser.c map_check.c get_next_line.c get_next_line_utils.c draw_map.c player_func.c player_move.c game_func.c charizard_move.c print_moves.c \
+			ft_printf.c ft_hex.c ft_writeptr.c printf_utils.c ft_itoa.c ft_strdup.c ft_calloc.c ft_bzero.c ft_putstr.c ft_strlen.c
 OBJS	= ${SRCS:.c=.o}
 BOBJS	= ${BSRCS:.c=.o}
 FLAGS	= -Wall -Werror -Wextra
@@ -12,23 +13,18 @@ RM		= rm -f
 	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
 
 all: ${NAME}
-	make -C ./ft_printf
-	make -C ./mlx
-	@cp ./mlx/libmlx.dylib .
-	@cp ./ft_printf/libftprintf.a .
-	$(CC) $(OBJS) -L . -lmlx -L . -lftprintf -framework OpenGL -framework AppKit -o $(NAME)
+	@make -C ./mlx
 
 ${NAME}: ${OBJS}
+	$(CC) $(OBJS) -L . -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
-	make clean -C ./mlx
-	make fclean -C ./ft_printf
-	rm -rf libmlx.dylib
+	@make -C ./mlx clean
 	${RM} ${OBJS}
 
 fclean: clean
-	rm libmlx.dylib libftprintf.a
 	${RM} ${NAME}
 
 re: fclean all
 
+.PHONY: all clean fclean re

@@ -6,11 +6,11 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 12:25:57 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/01/25 11:31:40 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/08 11:12:02 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "so_long.h"
 
 int	num_len(int n)
 {

@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 19:36:38 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/07 22:56:24 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/08 10:51:47 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ void	move_player_right(t_game *game, int x, int y)
 
 int	key_hook(int key, t_game *game)
 {
-	ft_printf("%d\n\n", key);
 	locate_player(game);
 	if (key == 2 || key == 124)
 		move_player_right(game, game->player.x, game->player.y);

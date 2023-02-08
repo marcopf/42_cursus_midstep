@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 19:54:44 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/07 22:50:42 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/08 09:50:23 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	smart_move(t_game *game)
 		move_char_down(game);
 	else if (game->player.y < game->charizard.y)
 		move_char_up(game);
-	if (game->player.x > game->charizard.x)
+	else if (game->player.x > game->charizard.x)
 		move_char_right(game);
 	else if (game->player.x < game->charizard.x)
 		move_char_left(game);

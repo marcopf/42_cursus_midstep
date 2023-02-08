@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 15:13:30 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/06 22:36:33 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/08 10:14:39 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ int	is_rect(char **map)
 	x = ft_strlen(map[0]);
 	i = 0;
 	if (x - 1 == y)
+	{
+		ft_printf("Error\nMappa quadrata !!!\n");
 		return (0);
+	}
 	while (i < y)
 	{
 		if (!(ft_strlen(map[i]) == x))
@@ -47,6 +50,7 @@ int	is_rect(char **map)
 	}
 	if (i == y)
 		return (1);
+	ft_printf("Error\nMappa quadrata o non rettangolare !!!\n");
 	return (0);
 }
 
@@ -103,6 +107,7 @@ int	can_we_get_out(char **map)
 	}
 	if (counter[0] && counter[1] && counter[2])
 		return (1);
+	ft_printf("Error\ninserisci almeno 1 player / uscita / collectibles !!!\n");
 	return (0);
 }
 
@@ -111,20 +116,26 @@ int	is_valid_map(char **map)
 	int	j;
 	int	i;
 
-	i = 0;
-	while (map[i])
+	i = -1;
+	while (map[++i])
 	{
-		j = 0;
-		while (map[i][j] != '\n')
+		j = -1;
+		while (map[i][++j] != '\n')
 		{
 			if (!is_in_set(map[i][j]))
+			{
+				ft_printf("Error\nInvalid char in map !!!\n");
 				return (0);
-				j++;
+			}
 		}
-		i++;
 	}
-	if (!border_wall(map) || !is_rect(map) || !can_we_get_out(map))
+	if (!is_rect(map) || !can_we_get_out(map))
 		return (0);
+	if (!border_wall(map))
+	{
+		ft_printf("Error\nIl muro è aperto !!!\n");
+		return (0);
+	}
 	else
 		return (1);
 }

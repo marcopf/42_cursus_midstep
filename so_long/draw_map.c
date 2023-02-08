@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 15:13:16 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/07 22:46:49 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/08 10:08:10 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,4 @@ void	draw_map(t_game *game)
 		game->imgs.offset_x = 0;
 		game->imgs.offset_y += 61;
 	}
-	mlx_sync(2, game->mlx_win);
-	mlx_sync(1, game->imgs.floor);
 }

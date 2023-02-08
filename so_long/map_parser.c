@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 15:13:40 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/07 22:39:18 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/08 10:10:13 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ char	**map_maker(char *path)
 	if (!is_valid_map(strs))
 	{
 		free_map(strs);
-		write(1, "Error\n", 7);
 		exit(0);
 	}
 	close(fd);

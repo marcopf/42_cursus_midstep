@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 11:35:09 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/01/25 11:35:39 by mpaterno         ###   ########.fr       */
+/*   Created: 2023/01/24 12:11:25 by mpaterno          #+#    #+#             */
+/*   Updated: 2023/02/08 11:10:45 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "so_long.h"
 
-size_t	ft_strlen(const char *str)
+char	*ft_strdup(const char *str)
 {
-	int	i;
+	char	*to_return;
+	int		i;
 
-	i = 0;
-	while (str[i])
+	i = -1;
+	to_return = (char *) malloc((sizeof(char) * ft_strlen(str)) + 1);
+	if (!to_return)
+		return (0);
+	while (str[++i])
 	{
-		i++;
+		to_return[i] = str[i];
 	}
-	return (i);
+	to_return[i] = 0;
+	return (to_return);
 }

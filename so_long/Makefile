@@ -29,4 +29,7 @@ fclean: clean
 
 re: fclean all
 
+game:
+	./so_long maps/fun.ber
+
 .PHONY: all clean fclean re

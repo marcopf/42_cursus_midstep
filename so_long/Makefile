@@ -14,6 +14,7 @@ RM		= rm -f
 
 all: ${NAME}
 	@make -C ./mlx
+	@cp ./mlx/libmlx.dylib .
 
 ${NAME}: ${OBJS}
 	$(CC) $(OBJS) -L . -lmlx -framework OpenGL -framework AppKit -o $(NAME)
@@ -23,6 +24,7 @@ clean:
 	${RM} ${OBJS}
 
 fclean: clean
+	rm -rf libmlx.dylib
 	${RM} ${NAME}
 
 re: fclean all

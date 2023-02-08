@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 19:54:44 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/08 12:10:16 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/08 12:15:24 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	print_moves(t_game *game)
 	test(game);
 	temp = ft_itoa(game->player.moves);
 	str = ft_strjoin(ft_strdup("mosse: "), temp);
-	mlx_string_put(game->mlx, game->mlx_win, 20, 15,
+	mlx_string_put(game->mlx, game->mlx_win, 20, 10,
 		create_trgb(255, 255, 255, 255), str);
 	free(temp);
 	free(str);

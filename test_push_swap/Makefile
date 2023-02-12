@@ -1,6 +1,6 @@
 NAME	= push_swap
 HEADER	= ${NAME:.a=.h}
-SRCS	= moves/pa_pb.c main.c
+SRCS	= fill_stack.c moves/sa_sb.c moves/pa_pb.c moves/ra_rb.c moves/rra_rrb.c main.c
 OBJS	= ${SRCS:.c=.o}
 BOBJS	= ${BSRCS:.c=.o}
 FLAGS	= -Wall -Werror -Wextra

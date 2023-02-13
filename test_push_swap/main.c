@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:57:41 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/12 22:42:58 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/13 12:08:49 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,21 +93,19 @@ void	test_bouble(t_stacks *stacks)
 {
 	int	i;
 	int	j;
-	int	r_count;
+	int	max;
 
-	i = 0;
-	while (stacks->stack_a.placed_number != 0)
+	max = stacks->stack_a.placed_number - stacks->middle.placed_number;
+	j = 0;
+	i = -1;
+	while (stacks->stack_a.placed_number != max)
 	{
-		r_count = stacks->middle[1][stacks->stack_a.list[0]] -2;
-		if (r_count < 0)
-			r_count = 0;
-		ft_printf("%d -- %d\n", stacks->stack_a.list[0], r_count);
-		j = r_count;
-		while (r_count--)
-			rb(stacks);
+		while (stacks->stack_a.list[0] != stacks->middle.list[j])
+		{
+			ra(stacks);
+		}
 		pb(stacks, 0);
-		while (j--)
-			rrb(stacks);
+		j++;
 	}
 }
 
@@ -127,8 +125,6 @@ int	main(int argc, char **argv)
 	// pb(&stacks);
 	test_bouble(&stacks);
 	print_stacks(&stacks);
-	ft_printf("%d\n\n", stacks.middle[0][68]);
-	ft_printf("mosse: %d\n", counter() - 1);
 	free(stacks.stack_a.list);
 	free(stacks.stack_b.list);
 	return (0);

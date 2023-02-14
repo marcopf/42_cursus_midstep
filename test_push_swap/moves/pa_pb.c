@@ -6,13 +6,13 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:29:05 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/14 09:45:20 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/14 15:09:28 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../push_swap.h"
 
-void	pa(t_stacks *stacks, int k)
+void	pa(t_stacks *stacks, int k, int flag)
 {
 	int	*new_arr;
 	int	*new;
@@ -37,10 +37,11 @@ void	pa(t_stacks *stacks, int k)
 	free(stacks->stack_b.list);
 	stacks->stack_b.list = new;
 	stacks->stack_b.placed_number -= 1;
-	ft_printf("pa\n");
+	if (flag)
+		ft_printf("pa\n");
 }
 
-void	pb(t_stacks *stacks, int k)
+void	pb(t_stacks *stacks, int k, int flag)
 {
 	int	*new_arr;
 	int	*new;
@@ -65,5 +66,6 @@ void	pb(t_stacks *stacks, int k)
 	free(stacks->stack_a.list);
 	stacks->stack_a.list = new;
 	stacks->stack_a.placed_number -= 1;
-	ft_printf("pb\n");
+	if (flag)
+		ft_printf("pb\n");
 }

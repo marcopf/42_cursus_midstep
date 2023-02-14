@@ -6,13 +6,13 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:59:19 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/14 09:51:23 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/14 15:14:15 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../push_swap.h"
 
-void	ra(t_stacks *stacks)
+void	ra(t_stacks *stacks, int flag)
 {
 	int	i;
 	int	*new_arr;
@@ -27,10 +27,11 @@ void	ra(t_stacks *stacks)
 		free(stacks->stack_a.list);
 		stacks->stack_a.list = new_arr;
 	}
-	ft_printf("ra\n");
+	if (flag)
+		ft_printf("ra\n");
 }
 
-void	rb(t_stacks *stacks)
+void	rb(t_stacks *stacks, int flag)
 {
 	int	i;
 	int	*new_arr;
@@ -45,12 +46,14 @@ void	rb(t_stacks *stacks)
 		free(stacks->stack_b.list);
 		stacks->stack_b.list = new_arr;
 	}
-	ft_printf("rb\n");
+	if (flag)
+		ft_printf("rb\n");
 }
 
-void	rr(t_stacks *stacks)
+void	rr(t_stacks *stacks, int flag)
 {
-	ra(stacks);
-	rb(stacks);
-	ft_printf("rr\n");
+	ra(stacks, 0);
+	rb(stacks, 0);
+	if (flag)
+		ft_printf("rr\n");
 }

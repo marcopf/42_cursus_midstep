@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:45:16 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/11 18:33:34 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/14 09:51:53 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	sa(t_stacks *stacks)
 		stacks->stack_a.list[1] = temp;
 	}
 	ft_printf("sa\n");
-	counter();
 }
 
 void	sb(t_stacks *stacks)

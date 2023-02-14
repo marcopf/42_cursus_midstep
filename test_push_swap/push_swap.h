@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:41:48 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/12 20:37:02 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/14 09:42:08 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "unistd.h"
 # include "stdlib.h"
 # include "struct.h"
+# include <time.h>
 # include "./libft/libft.h"
 # include "./ft_printf/libftprintf.h"
 # include "./get_next_line/get_next_line.h"
@@ -33,8 +34,10 @@ void	rr(t_stacks *stacks);
 void	rra(t_stacks *stacks);
 void	rrb(t_stacks *stacks);
 void	rrr(t_stacks *stacks);
+void	get_lis(t_stacks *stacks);
 //temporary
 void	print_stacks(t_stacks *stacks);
 int		counter(void);
+void	fill_stack_rand(t_stacks *stacks, int n);
 
 #endif

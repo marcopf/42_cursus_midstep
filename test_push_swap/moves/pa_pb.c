@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:29:05 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/12 22:22:34 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/14 09:45:20 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,5 @@ void	pb(t_stacks *stacks, int k)
 	free(stacks->stack_a.list);
 	stacks->stack_a.list = new;
 	stacks->stack_a.placed_number -= 1;
-	counter();
 	ft_printf("pb\n");
 }

@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:41:48 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/14 15:58:38 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/14 20:37:54 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	rrr(t_stacks *stacks, int flag);
 int		is_min(int *list, int len);
 int		is_in_lis(int *lis, int len, int n);
 void	get_lis(t_stacks *stacks);
+void	greedy(char *argv);
 //temporary
 void	print_stacks(t_stacks *stacks);
 int		counter(void);

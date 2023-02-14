@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:57:41 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/14 17:01:58 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/14 20:43:54 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ int	is_not_sorted(int *list, int len)
 	}
 	return (0);
 }
-
 
 int	main(int argc, char **argv)
 {

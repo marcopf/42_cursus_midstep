@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 16:37:39 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/14 09:43:46 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/15 11:37:28 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,7 @@ void	print_stacks(t_stacks *stacks)
 	ft_printf("/");
 	while (++i < stacks->stack_b.placed_number)
 		ft_printf("%d/ /", stacks->stack_b.list[i]);
-	i = -1;
-	ft_printf("\n\nlis|%d --> ", stacks->lis.lis_len);
-	ft_printf("/");
-	while (++i < stacks->lis.lis_len)
-		ft_printf("%d/ /", stacks->lis.lis[i]);
+	ft_printf("\n\n\n");
 }
 
 void	fill_stack(t_stacks *stacks, char *str)

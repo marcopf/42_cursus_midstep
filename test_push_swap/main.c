@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:57:41 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/14 20:43:54 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/15 12:07:56 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,11 @@ int	main(int argc, char **argv)
 	int			i;
 
 	srand(time(NULL));
-	fill_stack(&stacks, argv[1]);
-	push_all_b(&stacks);
+	// fill_stack(&stacks, argv[1]);
+	// push_all_b(&stacks);
 	greedy(argv[1]);
 	//print_stacks(&stacks);
-	free(stacks.stack_a.list);
-	free(stacks.stack_b.list);
+	// free(stacks.stack_a.list);
+	// free(stacks.stack_b.list);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 15:41:37 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/14 22:58:03 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/15 12:44:37 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,65 @@ int	*arr_move_maker(t_stacks *stacks)
 	int	i;
 
 	i = -1;
-	arr = (int *)malloc(sizeof(int) * stacks->stack_a.placed_number);
+	arr = (int *)malloc(sizeof(int) * stacks->stack_b.placed_number + 2);
 	while (++i < stacks->stack_b.placed_number)
 	{
-		arr[i] = is_in_between(stacks) + i + 1;
+		arr[i] = is_in_between(stacks) + i;
 		rb(stacks, 0);
 	}
 	return (arr);
+}
+
+void	make_best_move(t_stacks *stacks)
+{
+	int	i;
+	int	j;
+	int	*all_move;
+	int	val;
+	int	k;
+	int	best_move[2];
+
+	i = -1;
+	while (stacks->stack_b.placed_number > 0)
+	{
+		all_move = arr_move_maker(stacks);
+		best_move[0] = all_move[0];
+		best_move[1] = 0;
+		j = 0;
+		while (j < stacks->stack_b.placed_number)
+		{
+			if (all_move[j] < best_move[0])
+			{
+				best_move[0] = all_move[j];
+				best_move[1] = j;
+			}
+			j++;
+		}
+		k = -1;
+		if (best_move[0] >= 600)
+		{
+			best_move[0] -= 600;
+			while (((best_move[0]--) - best_move[1]) > 0)
+				rra(stacks, 1);
+			while (best_move[1]--)
+				rb(stacks, 1);
+			pa(stacks, 0, 1);
+		}
+		else
+		{
+			//da controllare
+			while ((((best_move[0]--) - best_move[1]) > 0) && best_move[1]--)
+				rr(stacks, 1);
+			if ((best_move[0]) > 0)
+				while (((best_move[0]--) - best_move[1]) > 0)
+					ra(stacks, 1);
+			if ((best_move[0]) > 0)
+				while ((best_move[1]))
+					rb(stacks, 1);
+			pa(stacks, 0, 1);
+		}
+		free(all_move);
+	}
 }
 
 void	push_all_b_greed(t_stacks *stacks)
@@ -105,7 +157,7 @@ void	push_all_b_greed(t_stacks *stacks)
 	}
 	while (stacks->stack_a.list[0] != is_min(stacks->stack_a.list,
 			stacks->stack_a.placed_number))
-		ra(stacks, 1);
+		ra(stacks, 0);
 	free(stacks->lis.lis);
 }
 
@@ -115,6 +167,7 @@ void	greedy(char *argv)
 	int			*arr;
 	int			i;
 	int			temp;
+	int			arr_move[2];
 
 	fill_stack(&stacks_cpy, argv);
 	push_all_b_greed(&stacks_cpy);
@@ -138,13 +191,13 @@ void	greedy(char *argv)
 	// while (stacks_cpy.stack_a.list[0] != is_min(stacks_cpy.stack_a.list,
 	// 		stacks_cpy.stack_a.placed_number))
 	// 	ra(&stacks_cpy, 0);
-	arr = arr_move_maker(&stacks_cpy);
+	//arr = arr_move_maker(&stacks_cpy);
+	make_best_move(&stacks_cpy);
 	i = -1;
-	while (++i < stacks_cpy.stack_b.placed_number)
-	{
-		ft_printf("-%d-", arr[i]);
-		rrb(&stacks_cpy, 0);
-	}
-	ft_printf("\n");
+	while (stacks_cpy.stack_a.list[0] != is_min(stacks_cpy.stack_a.list,
+		stacks_cpy.stack_a.placed_number))
+		ra(&stacks_cpy, 0);
 	print_stacks(&stacks_cpy);
+	// ft_printf("\n");
+	// print_stacks(&stacks_cpy);
 }

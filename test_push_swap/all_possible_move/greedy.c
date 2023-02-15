@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 15:41:37 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/15 12:44:37 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/15 13:46:15 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void	make_best_move(t_stacks *stacks)
 			j++;
 		}
 		k = -1;
+		val = best_move[1];
 		if (best_move[0] >= 600)
 		{
 			best_move[0] -= 600;
@@ -129,15 +130,20 @@ void	make_best_move(t_stacks *stacks)
 		}
 		else
 		{
-			//da controllare
-			while ((((best_move[0]--) - best_move[1]) > 0) && best_move[1]--)
+			// da controllare
+			while ((((best_move[0]--) - val) > 0) && (best_move[1]-- > 0))
 				rr(stacks, 1);
-			if ((best_move[0]) > 0)
-				while (((best_move[0]--) - best_move[1]) > 0)
+			best_move[0]++;
+			if ((best_move[0] - val) > 0)
+			{
+				while (((best_move[0]--) - val) > 0)
 					ra(stacks, 1);
-			if ((best_move[0]) > 0)
-				while ((best_move[1]))
+			}
+			if ((best_move[1]) > 0)
+			{
+				while ((best_move[1])--)
 					rb(stacks, 1);
+			}
 			pa(stacks, 0, 1);
 		}
 		free(all_move);
@@ -197,7 +203,7 @@ void	greedy(char *argv)
 	while (stacks_cpy.stack_a.list[0] != is_min(stacks_cpy.stack_a.list,
 		stacks_cpy.stack_a.placed_number))
 		ra(&stacks_cpy, 0);
-	print_stacks(&stacks_cpy);
+	//print_stacks(&stacks_cpy);
 	// ft_printf("\n");
 	// print_stacks(&stacks_cpy);
 }

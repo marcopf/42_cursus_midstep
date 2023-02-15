@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:57:41 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/15 12:07:56 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/15 13:49:38 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	locate_n(t_stacks *stacks, int n)
 
 int	is_in_lis(int *lis, int len, int n)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i < len)

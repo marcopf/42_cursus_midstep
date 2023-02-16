@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:41:48 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/16 15:09:59 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/16 16:37:37 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "unistd.h"
 # include "stdlib.h"
-// # include "./libft/libft.h"
 # include "stdarg.h"
 
 typedef struct e_stack{

@@ -1,6 +1,6 @@
 NAME	= push_swap
 HEADER	= ${NAME:.a=.h}
-SRCS	= all_possible_move/greedy.c get_lis.c all_possible_move/move_calculator.c fill_stack.c moves/pa_pb.c moves/ra_rb.c moves/rra_rrb.c main.c mini_libft/ft_split.c mini_libft/ft_atoi.c
+SRCS	= all_possible_move/greedy.c stacks/get_lis.c all_possible_move/move_calculator.c stacks/fill_stack.c moves/pa_pb.c moves/ra_rb.c moves/rra_rrb.c main.c mini_libft/ft_split.c mini_libft/ft_atoi.c
 OBJS	= ${SRCS:.c=.o}
 BOBJS	= ${BSRCS:.c=.o}
 FLAGS	= -Wall -Werror -Wextra

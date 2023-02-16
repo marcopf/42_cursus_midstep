@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 15:10:18 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/16 12:43:16 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:55:47 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	rra(t_stacks *stacks, int flag)
 		stacks->stack_a.list = new_arr;
 	}
 	if (flag)
-		ft_printf("rra\n");
+		write(1, "rra\n", 4);
 }
 
 void	rrb(t_stacks *stacks, int flag)
@@ -49,7 +49,7 @@ void	rrb(t_stacks *stacks, int flag)
 		stacks->stack_b.list = new_arr;
 	}
 	if (flag)
-		ft_printf("rrb\n");
+		write(1, "rrb\n", 4);
 }
 
 int	counter(void)
@@ -64,5 +64,5 @@ void	rrr(t_stacks *stacks, int flag)
 	rra(stacks, 0);
 	rrb(stacks, 0);
 	if (flag)
-		ft_printf("rrr\n");
+		write(1, "rrr\n", 4);
 }

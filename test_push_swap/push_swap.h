@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:41:48 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/14 20:37:54 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/16 15:09:59 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,30 @@
 
 # include "unistd.h"
 # include "stdlib.h"
-# include "struct.h"
-# include <time.h>
-# include "./libft/libft.h"
-# include "./ft_printf/libftprintf.h"
-# include "./get_next_line/get_next_line.h"
+// # include "./libft/libft.h"
 # include "stdarg.h"
+
+typedef struct e_stack{
+	int	*list;
+	int	placed_number;
+	int	min_num;
+}	t_stack;
+
+typedef struct e_lis{
+	int	**list;
+	int	*lis;
+	int	lis_len;
+	int	list_len;
+	int	index_i;
+	int	index_max_val;
+}	t_lis;
+
+typedef struct e_stacks{
+	t_stack	stack_a;
+	t_stack	stack_b;
+	t_lis	lis;
+	int		list_len;
+}	t_stacks;
 
 void	fill_stack(t_stacks *stacks, char *str);
 void	sa(t_stacks *stacks, int flag);
@@ -38,9 +56,11 @@ int		is_min(int *list, int len);
 int		is_in_lis(int *lis, int len, int n);
 void	get_lis(t_stacks *stacks);
 void	greedy(char *argv);
-//temporary
-void	print_stacks(t_stacks *stacks);
-int		counter(void);
-void	fill_stack_rand(t_stacks *stacks, int n);
+void	push_all_b(t_stacks *stacks);
+int		is_in_between(t_stacks *stacks);
+void	ascend(t_stacks *stacks);
+void	sort(t_stacks *stacks);
+int		ft_atoi(const char *str);
+char	**ft_split(char const *str, char c);
 
 #endif

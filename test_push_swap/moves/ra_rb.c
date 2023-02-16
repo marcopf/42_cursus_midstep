@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:59:19 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/16 12:12:56 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:55:15 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ra(t_stacks *stacks, int flag)
 		stacks->stack_a.list = new_arr;
 	}
 	if (flag)
-		ft_printf("ra\n");
+		write(1, "ra\n", 3);
 }
 
 void	rb(t_stacks *stacks, int flag)
@@ -49,7 +49,7 @@ void	rb(t_stacks *stacks, int flag)
 		stacks->stack_b.list = new_arr;
 	}
 	if (flag)
-		ft_printf("rb\n");
+		write(1, "rb\n", 3);
 }
 
 void	rr(t_stacks *stacks, int flag)
@@ -57,5 +57,5 @@ void	rr(t_stacks *stacks, int flag)
 	ra(stacks, 0);
 	rb(stacks, 0);
 	if (flag)
-		ft_printf("rr\n");
+		write(1, "rr\n", 3);
 }

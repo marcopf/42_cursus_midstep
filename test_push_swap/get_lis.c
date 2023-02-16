@@ -6,11 +6,28 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:54:35 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/16 11:28:08 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:07:34 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	push_all_b(t_stacks *stacks)
+{
+	get_lis(stacks);
+	while (stacks->stack_a.placed_number > stacks->lis.lis_len)
+	{
+		if (!is_in_lis(stacks->lis.lis, stacks->lis.lis_len,
+				stacks->stack_a.list[0]))
+			pb(stacks, 0, 1);
+		else
+			ra(stacks, 1);
+	}
+	while (stacks->stack_a.list[0] != is_min(stacks->stack_a.list,
+			stacks->stack_a.placed_number))
+		ra(stacks, 1);
+	free(stacks->lis.lis);
+}
 
 int	find_max_list(t_stacks *stacks, int len)
 {
@@ -52,23 +69,6 @@ void	increment(t_stacks *stacks)
 	}
 }
 
-void	reverse(int *arr, int n)
-{
-	int		i;
-	int		temp;
-
-	i = -1;
-	i = -1;
-	temp = 0;
-	while (++i < (n / 2))
-	{
-		temp = arr[i];
-		arr[i] = arr[n - i - 1];
-		arr[n - i - 1] = temp;
-	}
-		i = -1;
-}
-
 void	fill_arr(t_stacks *stacks)
 {
 	int	arr_len;
@@ -89,7 +89,6 @@ void	fill_arr(t_stacks *stacks)
 		}
 		i--;
 	}
-	//reverse(stacks->lis.lis, stacks->lis.lis_len);
 }
 
 void	get_lis(t_stacks *stacks)

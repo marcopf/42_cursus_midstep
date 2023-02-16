@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:29:05 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/16 12:13:14 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:54:48 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	pa(t_stacks *stacks, int k, int flag)
 	stacks->stack_b.list = new;
 	stacks->stack_b.placed_number -= 1;
 	if (flag)
-		ft_printf("pa\n");
+		write(1, "pa\n", 3);
 }
 
 void	pb(t_stacks *stacks, int k, int flag)
@@ -67,5 +67,5 @@ void	pb(t_stacks *stacks, int k, int flag)
 	stacks->stack_a.list = new;
 	stacks->stack_a.placed_number -= 1;
 	if (flag)
-		ft_printf("pb\n");
+		write(1, "pb\n", 3);
 }

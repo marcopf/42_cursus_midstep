@@ -6,115 +6,17 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 15:41:37 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/16 12:48:49 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:52:27 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../push_swap.h"
 
-int	is_max(t_stacks *stacks, int n)
-{
-	int	i;
-
-	i = -1;
-	while (++i < stacks->stack_a.placed_number)
-	{
-		if (n < stacks->stack_a.list[i])
-			return (0);
-	}
-	return (1);
-}
-
-int	is_min_greed(t_stacks *stacks, int n)
-{
-	int	i;
-
-	i = -1;
-	while (++i < stacks->stack_a.placed_number)
-	{
-		if (n > stacks->stack_a.list[i])
-			return (0);
-	}
-	return (1);
-}
-
-// void	is_in_between_max(t_stacks *stacks, int *i, int *index)
-// {
-// 	if (is_max(stacks, stacks->stack_b.list[0]))
-// 	{
-// 		if (is_min_greed(stacks, stacks->stack_a.list[0]))
-// 		{
-// 			index = i;
-// 			return () ;
-// 		}
-// 		while (stacks->stack_a.list[i] < stacks->stack_a.list[i + 1])
-// 			i++;
-// 		index = i + 1;
-// 		break ;
-// 	}
-// 	else if (is_min_greed(stacks, stacks->stack_b.list[0]))
-// 	{
-// 		while (stacks->stack_a.list[i] < stacks->stack_a.list[i + 1])
-// 			i++;
-// 		index = i + 1;
-// 		break ;
-// 	}
-// 	else if (stacks->stack_b.list[0] > stacks->stack_a.list[i]
-// 		&& stacks->stack_b.list[0] < stacks->stack_a.list[i + 1])
-// 	{
-// 		index = i + 1;
-// 		break ;
-// 	}
-// }
-
-int	is_in_between(t_stacks *stacks)
-{
-	int	i;
-	int	index;
-
-	i = -1;
-	index = 0;
-	while (i++ < stacks->stack_a.placed_number - 1)
-	{
-		if (is_max(stacks, stacks->stack_b.list[0]))
-		{
-			if (is_min_greed(stacks, stacks->stack_a.list[0]))
-			{
-				index = i;
-				break ;
-			}
-			while (stacks->stack_a.list[i] < stacks->stack_a.list[i + 1])
-				i++;
-			index = i + 1;
-			break ;
-		}
-		else if (is_min_greed(stacks, stacks->stack_b.list[0]))
-		{
-			while (stacks->stack_a.list[i] < stacks->stack_a.list[i + 1])
-				i++;
-			index = i + 1;
-			break ;
-		}
-		else if (stacks->stack_b.list[0] > stacks->stack_a.list[i]
-			&& stacks->stack_b.list[0] < stacks->stack_a.list[i + 1])
-		{
-			index = i + 1;
-			break ;
-		}
-	}
-	if (index > (stacks->stack_a.placed_number / 2))
-		index = (stacks->stack_a.placed_number - index) + 1000;
-	return (index);
-}
-
 void	loop(t_stacks *stacks, int *arr, int *temp, int *i)
 {
-	// print_stacks(stacks);
-	// ft_printf("\n");
 	while (++(*i) < stacks->stack_b.placed_number)
 	{
 		*temp = is_in_between(stacks) + *i;
-		// ft_printf("!%d -- %d!", arr[0], *temp);
 		if (*temp >= 1000)
 		{
 			if (arr[0] >= (*temp - 1000))
@@ -131,16 +33,14 @@ void	loop(t_stacks *stacks, int *arr, int *temp, int *i)
 				arr[0] = *temp;
 				arr[1] = *i;
 				arr[2] = 0;
-			}			
+			}
 		}
-		rb(stacks, 0);// da lasciare a zero
+		rb(stacks, 0);
 	}
-	// ft_printf("\n\n$$ %d -- %d $$\n\n", arr[0], arr[1]);
-	// ft_printf("\n");
 	arr[0] -= arr[1];
 }
 
-int	*arr_move_maker(t_stacks *stacks)
+int	*move_selector(t_stacks *stacks)
 {
 	int	*arr;
 	int	i;
@@ -159,11 +59,6 @@ int	*arr_move_maker(t_stacks *stacks)
 		arr[2] = 1;
 	}
 	loop(stacks, arr, &temp, &i);
-	if (arr[0] >= 1000)
-	{
-		arr[0] -= 1000;
-		arr[2] = 1;
-	}
 	if (arr[1] > (stacks->stack_b.placed_number / 2))
 	{
 		arr[1] = stacks->stack_b.placed_number - arr[1];
@@ -200,7 +95,7 @@ void	sort(t_stacks *stacks)
 	move = 0;
 	while (stacks->stack_b.placed_number > 0)
 	{
-		move = arr_move_maker(stacks);
+		move = move_selector(stacks);
 		move_combine(stacks, move);
 		if (move[2] == 1 && move[0] > 0)
 			while (move[0]-- > 0)
@@ -219,126 +114,24 @@ void	sort(t_stacks *stacks)
 	}
 }
 
-
-// void	make_best_move(t_stacks *stacks)
-// {
-// 	int	i;
-// 	int	j;
-// 	int	*all_move;
-// 	int	val;
-// 	int	k;
-// 	int	best_move[4];
-
-// 	i = -1;
-// 	while (stacks->stack_b.placed_number > 0)
-// 	{
-// 		all_move = arr_move_maker(stacks);
-// 		best_move[0] = all_move[0];
-// 		best_move[1] = 0;
-// 		j = 0;
-// 		while (j < stacks->stack_b.placed_number)
-// 		{
-// 			if (all_move[j] < best_move[0])
-// 			{
-// 				best_move[0] = all_move[j];
-// 				best_move[1] = j;
-// 			}
-// 			j++;
-// 		}
-// 		k = -1;
-// 		val = best_move[1];
-// 		if (best_move[0] >= 600)
-// 		{
-// 			best_move[0] -= 600;
-// 			while (((best_move[0]--) - best_move[1]) > 0)
-// 				rra(stacks, 1);
-// 			while (best_move[1]--)
-// 				rb(stacks, 1);
-// 			pa(stacks, 0, 1);
-// 		}
-// 		else
-// 		{
-// 			// da controllare
-// 			while ((((best_move[0]--) - val) > 0) && (best_move[1]-- > 0))
-// 				rr(stacks, 1);
-// 			best_move[0]++;
-// 			if ((best_move[0] - val) > 0)
-// 			{
-// 				while (((best_move[0]--) - val) > 0)
-// 					ra(stacks, 1);
-// 			}
-// 			if ((best_move[1]) > 0)
-// 			{
-// 				while ((best_move[1])--)
-// 					rb(stacks, 1);
-// 			}
-// 			pa(stacks, 0, 1);
-// 		}
-// 		free(all_move);
-// 	}
-// }
-
-void	push_all_b_greed(t_stacks *stacks)
+void	ascend(t_stacks *stacks)
 {
-	get_lis(stacks);
-	while (stacks->stack_a.placed_number > stacks->lis.lis_len)
+	int	i;
+
+	i = -1;
+	while (stacks->stack_a.list[++i] != is_min(stacks->stack_a.list,
+			stacks->stack_a.placed_number))
+		;
+	if (i > stacks->stack_a.placed_number)
 	{
-		if (!is_in_lis(stacks->lis.lis, stacks->lis.lis_len,
-				stacks->stack_a.list[0]))
-			pb(stacks, 0, 1);
-		else
+		while (stacks->stack_a.list[0] != is_min(stacks->stack_a.list,
+				stacks->stack_a.placed_number))
+			rra(stacks, 1);
+	}
+	if (i <= stacks->stack_a.placed_number)
+	{
+		while (stacks->stack_a.list[0] != is_min(stacks->stack_a.list,
+				stacks->stack_a.placed_number))
 			ra(stacks, 1);
 	}
-	while (stacks->stack_a.list[0] != is_min(stacks->stack_a.list,
-			stacks->stack_a.placed_number))
-		ra(stacks, 1);
-	free(stacks->lis.lis);
-}
-
-void	stacks_init(t_stacks *stacks)
-{
-	stacks->list_len = 0;
-	stacks->stack_a.min_num = 0;
-	stacks->stack_a.placed_number = 0;
-	stacks->stack_a.list = 0;
-	stacks->stack_b.min_num = 0;
-	stacks->stack_b.placed_number = 0;
-	stacks->stack_b.list = 0;
-	stacks->lis.index_i = 0;
-	stacks->lis.index_max_val = 0;
-	stacks->lis.lis_len = 0;
-	stacks->lis.list_len = 0;
-	stacks->lis.lis = 0;
-	stacks->lis.list = 0;
-}
-
-void	greedy(char *argv)
-{
-	t_stacks	stacks_cpy;
-	int			i;
-
-	stacks_init(&stacks_cpy);
-	fill_stack(&stacks_cpy, argv);
-	push_all_b_greed(&stacks_cpy);
-	sort(&stacks_cpy);
-	i = -1;
-	while (stacks_cpy.stack_a.list[++i] != is_min(stacks_cpy.stack_a.list,
-			stacks_cpy.stack_a.placed_number))
-		;
-	if (i > stacks_cpy.stack_a.placed_number)
-	{
-		while (stacks_cpy.stack_a.list[0] != is_min(stacks_cpy.stack_a.list,
-				stacks_cpy.stack_a.placed_number))
-			rra(&stacks_cpy, 1);
-	}
-	if (i <= stacks_cpy.stack_a.placed_number)
-	{
-		while (stacks_cpy.stack_a.list[0] != is_min(stacks_cpy.stack_a.list,
-				stacks_cpy.stack_a.placed_number))
-			ra(&stacks_cpy, 1);
-	}
-	//print_stacks(&stacks_cpy);
-	print_stacks(&stacks_cpy);
-	// ft_printf("\n");
-	// print_stacks(&stacks_cpy);
 }

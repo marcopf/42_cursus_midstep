@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 15:41:37 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/15 22:40:33 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/16 12:48:49 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	is_in_between(t_stacks *stacks)
 	int	index;
 
 	i = -1;
+	index = 0;
 	while (i++ < stacks->stack_a.placed_number - 1)
 	{
 		if (is_max(stacks, stacks->stack_b.list[0]))
@@ -108,16 +109,34 @@ int	is_in_between(t_stacks *stacks)
 
 void	loop(t_stacks *stacks, int *arr, int *temp, int *i)
 {
+	// print_stacks(stacks);
+	// ft_printf("\n");
 	while (++(*i) < stacks->stack_b.placed_number)
 	{
 		*temp = is_in_between(stacks) + *i;
-		if (arr[0] > *temp)
+		// ft_printf("!%d -- %d!", arr[0], *temp);
+		if (*temp >= 1000)
 		{
-			arr[0] = *temp;
-			arr[1] = *i;
+			if (arr[0] >= (*temp - 1000))
+			{
+				arr[0] = *temp - 1000;
+				arr[1] = *i;
+				arr[2] = 1;
+			}
 		}
-		rb(stacks, 0);
+		else
+		{
+			if (arr[0] > *temp)
+			{
+				arr[0] = *temp;
+				arr[1] = *i;
+				arr[2] = 0;
+			}			
+		}
+		rb(stacks, 0);// da lasciare a zero
 	}
+	// ft_printf("\n\n$$ %d -- %d $$\n\n", arr[0], arr[1]);
+	// ft_printf("\n");
 	arr[0] -= arr[1];
 }
 
@@ -128,11 +147,17 @@ int	*arr_move_maker(t_stacks *stacks)
 	int	temp;
 
 	i = -1;
+	temp = 0;
 	arr = (int *)malloc(sizeof(int) * 4);
 	arr[0] = is_in_between(stacks);
 	arr[1] = 0;
 	arr[2] = 0;
 	arr[3] = 0;
+	if (arr[0] >= 1000)
+	{
+		arr[0] -= 1000;
+		arr[2] = 1;
+	}
 	loop(stacks, arr, &temp, &i);
 	if (arr[0] >= 1000)
 	{
@@ -172,6 +197,7 @@ void	sort(t_stacks *stacks)
 {
 	int	*move;
 
+	move = 0;
 	while (stacks->stack_b.placed_number > 0)
 	{
 		move = arr_move_maker(stacks);
@@ -269,52 +295,46 @@ void	push_all_b_greed(t_stacks *stacks)
 	free(stacks->lis.lis);
 }
 
+void	stacks_init(t_stacks *stacks)
+{
+	stacks->list_len = 0;
+	stacks->stack_a.min_num = 0;
+	stacks->stack_a.placed_number = 0;
+	stacks->stack_a.list = 0;
+	stacks->stack_b.min_num = 0;
+	stacks->stack_b.placed_number = 0;
+	stacks->stack_b.list = 0;
+	stacks->lis.index_i = 0;
+	stacks->lis.index_max_val = 0;
+	stacks->lis.lis_len = 0;
+	stacks->lis.list_len = 0;
+	stacks->lis.lis = 0;
+	stacks->lis.list = 0;
+}
+
 void	greedy(char *argv)
 {
 	t_stacks	stacks_cpy;
-	int			*arr;
 	int			i;
-	int			temp;
-	int			arr_move[2];
 
+	stacks_init(&stacks_cpy);
 	fill_stack(&stacks_cpy, argv);
 	push_all_b_greed(&stacks_cpy);
-	// while (stacks_cpy.stack_b.placed_number > 0)
-	// {
-	// 	temp = is_in_between(&stacks_cpy);
-	// 	if (temp >= 600)
-	// 	{
-	// 		temp -= 600;
-	// 		while (temp--)
-	// 			rra(&stacks_cpy, 0);
-	// 		pa(&stacks_cpy, 0, 0);
-	// 	}
-	// 	else
-	// 	{
-	// 		while (temp--)
-	// 			ra(&stacks_cpy, 0);
-	// 		pa(&stacks_cpy, 0, 0);
-	// 	}
-	// }
-	// while (stacks_cpy.stack_a.list[0] != is_min(stacks_cpy.stack_a.list,
-	// 		stacks_cpy.stack_a.placed_number))
-	// 	ra(&stacks_cpy, 0);
-	//arr = arr_move_maker(&stacks_cpy);
 	sort(&stacks_cpy);
 	i = -1;
 	while (stacks_cpy.stack_a.list[++i] != is_min(stacks_cpy.stack_a.list,
-		stacks_cpy.stack_a.placed_number))
+			stacks_cpy.stack_a.placed_number))
 		;
 	if (i > stacks_cpy.stack_a.placed_number)
 	{
 		while (stacks_cpy.stack_a.list[0] != is_min(stacks_cpy.stack_a.list,
-			stacks_cpy.stack_a.placed_number))
+				stacks_cpy.stack_a.placed_number))
 			rra(&stacks_cpy, 1);
 	}
 	if (i <= stacks_cpy.stack_a.placed_number)
 	{
 		while (stacks_cpy.stack_a.list[0] != is_min(stacks_cpy.stack_a.list,
-			stacks_cpy.stack_a.placed_number))
+				stacks_cpy.stack_a.placed_number))
 			ra(&stacks_cpy, 1);
 	}
 	//print_stacks(&stacks_cpy);

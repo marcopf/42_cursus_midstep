@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:57:41 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/15 13:49:38 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/16 12:14:09 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ int	main(int argc, char **argv)
 	t_stacks	stacks;
 	int			i;
 
-	srand(time(NULL));
 	// fill_stack(&stacks, argv[1]);
 	// push_all_b(&stacks);
 	greedy(argv[1]);

@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 15:10:18 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/14 15:13:57 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/16 12:43:16 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	rra(t_stacks *stacks, int flag)
 	int	*new_arr;
 
 	i = -1;
+	new_arr = 0;
 	if (stacks->stack_a.placed_number > 1)
 	{
 		new_arr = (int *) malloc(sizeof(int) * stacks->list_len);
@@ -37,6 +38,7 @@ void	rrb(t_stacks *stacks, int flag)
 	int	*new_arr;
 
 	i = -1;
+	new_arr = 0;
 	if (stacks->stack_b.placed_number > 1)
 	{
 		new_arr = (int *) malloc(sizeof(int) * stacks->list_len);

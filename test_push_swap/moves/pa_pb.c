@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:29:05 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/15 11:46:22 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/16 12:13:14 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void	pa(t_stacks *stacks, int k, int flag)
 	int	*new;
 	int	i;
 
+	i = 0;
 	if (stacks->stack_b.placed_number < 1)
 		return ;
 	if (stacks->stack_b.placed_number >= 1)
 		k = 1;
 	new_arr = (int *) malloc(sizeof(int) * stacks->stack_a.placed_number + 1);
 	new = (int *) malloc(sizeof(int) * stacks->stack_b.placed_number - 1 + k);
-	i = 0;
 	new_arr[0] = stacks->stack_b.list[0];
 	while ((++i) <= stacks->stack_a.placed_number)
 		new_arr[i] = stacks->stack_a.list[i - 1];
@@ -47,13 +47,13 @@ void	pb(t_stacks *stacks, int k, int flag)
 	int	*new;
 	int	i;
 
+	i = 0;
 	if (stacks->stack_a.placed_number < 1)
 		return ;
 	if (stacks->stack_a.placed_number >= 0)
 		k = 1;
 	new_arr = (int *) malloc(sizeof(int) * stacks->stack_b.placed_number + 1);
 	new = (int *) malloc(sizeof(int) * stacks->stack_a.placed_number - 1 + k);
-	i = 0;
 	new_arr[0] = stacks->stack_a.list[0];
 	while ((++i) <= stacks->stack_b.placed_number)
 		new_arr[i] = stacks->stack_b.list[i - 1];

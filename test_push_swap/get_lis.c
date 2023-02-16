@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:54:35 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/14 10:57:31 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/16 11:28:08 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	increment(t_stacks *stacks)
 	int	j;
 
 	i = 0;
+	j = -1;
 	while (++i < stacks->stack_a.placed_number)
 	{
 		j = -1;
@@ -58,6 +59,7 @@ void	reverse(int *arr, int n)
 
 	i = -1;
 	i = -1;
+	temp = 0;
 	while (++i < (n / 2))
 	{
 		temp = arr[i];
@@ -70,7 +72,6 @@ void	reverse(int *arr, int n)
 void	fill_arr(t_stacks *stacks)
 {
 	int	arr_len;
-	int	val;
 	int	i;
 
 	i = stacks->stack_a.placed_number - 1;

@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 16:37:39 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/16 16:37:27 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/16 20:59:03 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	fill_stack(t_stacks *stacks, char *str)
 {
 	char	**strs;
 	int		i;
+	long	val;
 
 	i = 0;
 	strs = ft_split(str, ' ');
@@ -28,7 +29,12 @@ void	fill_stack(t_stacks *stacks, char *str)
 	stacks->list_len = i;
 	i = -1;
 	while (strs[++i])
+	{
+		val = ft_atoi(strs[i]);
+		if (val > 2147483647 || val < -2147483648)
+			finish(stacks);
 		stacks->stack_a.list[i] = ft_atoi(strs[i]);
+	}
 	i = 0;
 	while (strs[i])
 		free(strs[i++]);

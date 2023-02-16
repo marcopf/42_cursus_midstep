@@ -6,17 +6,17 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 12:23:14 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/16 15:03:45 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/16 20:49:01 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../push_swap.h"
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
-	int	neg;
-	int	i;
-	int	num;
+	long	neg;
+	long	i;
+	long	num;
 
 	i = 0;
 	neg = 1;

@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:41:48 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/16 16:37:37 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/16 22:49:49 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "unistd.h"
 # include "stdlib.h"
 # include "stdarg.h"
+//da eliminare
+# include <stdio.h>
 
 typedef struct e_stack{
 	int	*list;
@@ -59,7 +61,11 @@ void	push_all_b(t_stacks *stacks);
 int		is_in_between(t_stacks *stacks);
 void	ascend(t_stacks *stacks);
 void	sort(t_stacks *stacks);
-int		ft_atoi(const char *str);
+long	ft_atoi(const char *str);
 char	**ft_split(char const *str, char c);
+int		duplicate_check(t_stacks *stacks);
+void	finish(t_stacks *stacks);
+int		str_check(char *str, t_stacks *stacks);
+void	small_sort(t_stacks *stacks);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:57:41 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/18 20:38:29 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/18 20:50:48 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ int	main(int argc, char **argv)
 	stacks.stack_a.list = 0;
 	stacks.stack_b.list = 0;
 	if (argc < 2 || argc > 2)
-	{
-		write(2, "Error\n", 6);
 		return (0);
-	}
 	str_check(argv[1], &stacks);
 	fill_stack(&stacks, argv[1]);
 	if (is_sorted(&stacks))

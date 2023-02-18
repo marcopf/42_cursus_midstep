@@ -6,11 +6,24 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 22:29:20 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/18 18:25:17 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/18 20:31:00 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../push_swap.h"
+
+int	is_sorted(t_stacks *stacks)
+{
+	int	i;
+
+	i = -1;
+	while (++i < stacks->stack_a.placed_number - 1)
+	{
+		if (stacks->stack_a.list[i] > stacks->stack_a.list[i + 1])
+			return (0);
+	}
+	return (1);
+}
 
 void	small_sort_2(t_stacks *stacks)
 {

@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:46:10 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/18 09:26:21 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/18 20:37:35 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,15 @@ void	finish(t_stacks *stacks)
 	if (stacks->stack_b.list)
 		free(stacks->stack_b.list);
 	write(2, "Error\n", 6);
+	exit(0);
+}
+
+void	finish_no_e(t_stacks *stacks)
+{
+	if (stacks->stack_a.list)
+		free(stacks->stack_a.list);
+	if (stacks->stack_b.list)
+		free(stacks->stack_b.list);
 	exit(0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:41:48 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/18 18:40:50 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/18 20:39:00 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ void	rra(t_stacks *stacks, int flag);
 void	rrb(t_stacks *stacks, int flag);
 void	rrr(t_stacks *stacks, int flag);
 int		is_min(int *list, int len);
-int		is_in_lis(int *lis, int len, int n);
-void	get_lis(t_stacks *stacks);
 void	greedy(char *argv);
 void	push_all_b(t_stacks *stacks);
 int		is_in_between(t_stacks *stacks);
@@ -68,8 +66,8 @@ void	finish(t_stacks *stacks);
 int		str_check(char *str, t_stacks *stacks);
 void	small_sort(t_stacks *stacks);
 void	small_sort_for_medium(t_stacks *stacks);
-void	medium_sort(t_stacks *stacks);
 int		is_sorted(t_stacks *stacks);
+void	finish_no_e(t_stacks *stacks);
 
 void	print_stacks(t_stacks *stacks);
 

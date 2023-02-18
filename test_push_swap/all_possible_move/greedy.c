@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 15:41:37 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/18 17:39:00 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/18 18:03:03 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ int	*move_selector(t_stacks *stacks)
 		arr[2] = 1;
 	}
 	loop(stacks, arr, &temp, &i);
-	if (arr[1] > ((stacks->stack_b.placed_number / 2)
-			+ stacks->stack_b.placed_number % 2))
+	if (arr[1] > (stacks->stack_b.placed_number / 2))
 	{
 		arr[1] = stacks->stack_b.placed_number - arr[1];
 		arr[3] = 1;

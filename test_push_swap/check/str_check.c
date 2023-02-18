@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 21:28:44 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/16 21:29:17 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/18 09:30:13 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	str_check(char *str, t_stacks *stacks)
 			if (str[i] == '-')
 			{
 				if (str[i + 1] && !ft_isdigit(str[i + 1]))
+					finish(stacks);
+				if (!str[i + 1] && !ft_isdigit(str[i]))
 					finish(stacks);
 			}
 			else

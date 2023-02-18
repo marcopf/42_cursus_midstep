@@ -6,11 +6,33 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:57:41 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/16 22:57:38 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/18 17:39:12 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ascend(t_stacks *stacks)
+{
+	int	i;
+
+	i = -1;
+	while (stacks->stack_a.list[++i] != is_min(stacks->stack_a.list,
+			stacks->stack_a.placed_number))
+		;
+	if (i > stacks->stack_a.placed_number / 2)
+	{
+		while (stacks->stack_a.list[0] != is_min(stacks->stack_a.list,
+				stacks->stack_a.placed_number))
+			rra(stacks, 1);
+	}
+	if (i <= stacks->stack_a.placed_number / 2)
+	{
+		while (stacks->stack_a.list[0] != is_min(stacks->stack_a.list,
+				stacks->stack_a.placed_number))
+			ra(stacks, 1);
+	}
+}
 
 int	main(int argc, char **argv)
 {
@@ -26,5 +48,7 @@ int	main(int argc, char **argv)
 	push_all_b(&stacks);
 	sort(&stacks);
 	ascend(&stacks);
+	free(stacks.stack_a.list);
+	free(stacks.stack_b.list);
 	return (0);
 }

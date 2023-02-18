@@ -6,11 +6,29 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 16:37:39 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/16 20:59:03 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/18 08:32:34 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../push_swap.h"
+
+void	print_stacks(t_stacks *stacks)
+{
+	int	i;
+
+	i = -1;
+	printf("\n\nstack A/%d:", stacks->stack_a.placed_number);
+	while (++i < stacks->stack_a.placed_number)
+	{
+		printf(" %d |", stacks->stack_a.list[i]);
+	}
+	i = -1;
+	printf("\n\nstack B/%d:", stacks->stack_b.placed_number);
+	while (++i < stacks->stack_b.placed_number)
+	{
+		printf(" %d |", stacks->stack_b.list[i]);
+	}
+}
 
 void	fill_stack(t_stacks *stacks, char *str)
 {

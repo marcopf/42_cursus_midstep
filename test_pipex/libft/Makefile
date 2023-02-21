@@ -10,21 +10,18 @@ CC		= gcc ${FLAGS}
 RM		= rm -f
 
 .o:.c
-	${CC} ${OBJS} libftprintf.a $< -o ${<:.c=.o}
+	${CC} ${OBJS} $< -o ${<:.c=.o}
 
-${NAME}: printf_comp ${OBJS}
-	ar rc ${NAME} libftprintf.a ${OBJS}
+${NAME}: ${OBJS}
+	ar rc ${NAME} ${OBJS}
 	ranlib ${NAME}
 
 all: ${NAME}
 
 clean:
-	make -C ft_printf clean
 	${RM} ${OBJS} ${BOBJS}
 
 fclean: clean
-	rm -rf libftprintf.a
-	make -C ft_printf fclean
 	${RM} ${NAME}
 
 re: fclean all
@@ -32,7 +29,3 @@ re: fclean all
 bonus: ${OBJS} ${BOBJS}
 	ar rc ${NAME} ${OBJS} ${BOBJS}
 	ranlib ${NAME}
-
-printf_comp:
-	make -C ./ft_printf
-	@cp ft_printf/libftprintf.a . 

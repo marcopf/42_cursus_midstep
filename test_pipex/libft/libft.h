@@ -6,7 +6,7 @@
 /*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 10:32:23 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/21 09:16:27 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:12:04 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include "ft_printf/libftprintf.h"
 
 typedef struct s_list
 {
@@ -68,6 +67,5 @@ int					ft_isascii(int c);
 int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
-int					ft_printf(const char *str, ...);
 
 #endif

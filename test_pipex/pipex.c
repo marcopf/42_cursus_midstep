@@ -12,37 +12,66 @@
 
 #include "pipex.h"
 
-int	better_execve_1(char **argv, int argc)
+void	ft_free(char **strs)
 {
-	char	*base;
-	char	*command;
-	char	**strs;
-	int		i;
+	int	i;
 
-	strs = (char **)malloc(sizeof(char *) * argc);
-	strs[argc] = 0;
-	i = 0;
+	i = -1;
 	while (strs[++i])
-		strs[i - 1] = argv[i];
-	strs[i - 1] = 0;
-	base = ft_strdup("/bin/");
-	strs[0] = ft_strjoin(base, argv[1]);
-	execve(strs[0], strs, NULL);
+		free(strs[i]);
+	free(strs);
 }
 
-int	main(int argc, char **argv)
+char **command_maker(char **argv, int argc, int el)
 {
-	int	pid1;
+	char	**strs;
+	char	*base;
+	char	*command;
 
-	pid1 = fork();
-	if (pid1 < 0)
-	{
-		ft_printf("Error\n");
-		return (0);
-	}
-	else
-	{
-		better_execve_1(argv, argc);
-	}
+	strs = ft_split(argv[el], ' ');
+	base = ft_strdup("/bin/");
+	command = ft_strjoin(base, strs[0]);
+	free(strs[0]);
+	free(base);
+	strs[0] = command;
+	return (strs);
+}
+
+int main(int argc, char **argv, char **envp) 
+{
+	t_pipex	pipex;
 	
+	if (pipe(pipex.pipe_fd) == -1)
+		return (1);
+	pipex.infile_fd = open(argv[1], O_RDONLY);
+	pipex.command1 = command_maker(argv, argc, 2);
+	pipex.command2 = command_maker(argv, argc, 3);
+	pipex.pid1 = fork();
+	if (pipex.pid1 < 0)
+		return (2);
+	if (pipex.pid1 == 0)
+	{
+		close(pipex.pipe_fd[0]);
+		dup2(pipex.pipe_fd[1], STDOUT_FILENO);
+		dup2(pipex.infile_fd, 0);
+		close(pipex.pipe_fd[1]);
+		execve(pipex.command1[0], pipex.command1, NULL);
+	}
+	pipex.pid2 = fork();
+	if (pipex.pid2 < 0)
+		return (3);
+	if (pipex.pid2 == 0)
+	{
+		dup2(pipex.pipe_fd[0], STDIN_FILENO);
+		close(pipex.pipe_fd[0]);
+		close(pipex.pipe_fd[1]);
+		execve(pipex.command2[0], pipex.command2, NULL);
+	}
+	close(pipex.pipe_fd[0]);
+	close(pipex.pipe_fd[1]);
+	close(pipex.infile_fd);
+	waitpid(pipex.pid1, NULL, 0);
+	waitpid(pipex.pid2, NULL, 0);
+	ft_free(pipex.command1);
+	ft_free(pipex.command2);
 }

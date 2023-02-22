@@ -13,10 +13,23 @@
 #ifndef PIPEX_H
 # define PIPEX_H
 
+typedef struct e_pipex{
+    int     pipe_fd[2];
+    int     infile_fd;
+    int     pid1;
+    int     pid2;
+    char    **command1;
+    char    **command2;
+
+}   t_pipex;
+
 # include "libft/libft.h"
 # include "ft_printf/libftprintf.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <errno.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <fcntl.h>
 
 #endif

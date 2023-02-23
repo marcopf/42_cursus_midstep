@@ -3,53 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 09:31:08 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/23 16:54:49 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/23 20:36:30 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-void	ft_free(char **strs)
-{
-	int	i;
-
-	i = -1;
-	while (strs[++i])
-		free(strs[i]);
-	free(strs);
-}
-
-void	free_cmd_n_file(t_pipex *pipex)
-{
-	close(pipex->outfile_fd);
-	close(pipex->infile_fd);
-	ft_free(pipex->cmd1);
-	ft_free(pipex->cmd2);
-}
-
-char	*line_composer(char **strs)
-{
-	char	*temp;
-	char	*temp2;
-	int		i;
-
-	i = 0;
-	temp2 = ft_strdup(strs[1]);
-	while (strs[++i])
-	{
-		if (strs[i + 1])
-		{
-			temp = ft_strjoin(temp2, " ");
-			free(temp2);
-			temp2 = ft_strjoin(temp, strs[i + 1]);
-			free(temp);
-		}
-	}
-	return (temp2);
-}
 
 int	sub_proc(t_pipex *pipex)
 {
@@ -74,57 +35,6 @@ int	sub_proc(t_pipex *pipex)
 		execve(pipex->cmd2[0], pipex->cmd2, NULL);
 	}
 	return (1);
-}
-
-char	**get_line(char **envp)
-{
-	int		i;
-	int		flag;
-	char	**ret;
-
-	flag = 0;
-	i = -1;
-	ret = 0;
-	while (envp[++i])
-	{
-		if (ft_strncmp("PATH", envp[i], 4) == 0)
-		{
-			flag = 1;
-			break ;
-		}
-	}
-	if (flag)
-		ret = ft_split((envp[i] + 5), ':');
-	return (ret);
-}
-
-char	**path_n_command(t_pipex *pipex, char **argv, int el, char **envp)
-{
-	char	*temp;
-	char	**command;
-
-	pipex->paths = get_line(envp);
-	pipex->cmd_i = -1;
-	command = ft_split(argv[el], ' ');
-	while (pipex->paths[++pipex->cmd_i])
-	{
-		temp = ft_strdup(pipex->paths[pipex->cmd_i]);
-		free(pipex->paths[pipex->cmd_i]);
-		pipex->paths[pipex->cmd_i] = ft_strjoin(temp, "/");
-		free(temp);
-		temp = ft_strdup(pipex->paths[pipex->cmd_i]);
-		free(pipex->paths[pipex->cmd_i]);
-		pipex->paths[pipex->cmd_i] = ft_strjoin(temp, command[0]);
-		free(temp);
-	}
-	pipex->cmd_i = -1;
-	while (pipex->paths[++pipex->cmd_i])
-		if (!access(pipex->paths[pipex->cmd_i], 0))
-			break ;
-	free(command[0]);
-	command[0] = ft_strdup(pipex->paths[pipex->cmd_i]);
-	ft_free(pipex->paths);
-	return (command);
 }
 
 void	protect_space(char *strs)

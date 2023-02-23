@@ -1,6 +1,6 @@
 NAME	= pipex
 HEADER	= ${NAME:.a=.h}
-SRCS	=	pipex.c
+SRCS	=	pipex.c free.c path_n_command.c
 OBJS	= ${SRCS:.c=.o}
 BOBJS	= ${BSRCS:.c=.o}
 FLAGS	= -Wall -Werror -Wextra
@@ -15,16 +15,13 @@ all: ${NAME}
 
 ${NAME}: ${OBJS}
 	make -C ./libft
-	make -C ./ft_printf
-	$(CC) $(OBJS) -L./libft -lft -L./ft_printf -lftprintf -o $(NAME)
+	$(CC) $(OBJS) -L./libft -lft -o $(NAME)
 
 clean:
 	make -C ./libft clean
-	make -C ./ft_printf clean
 	${RM} ${OBJS}
 
 fclean: clean
-	make -C ./ft_printf clean
 	make -C ./libft fclean
 	${RM} ${NAME}
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 09:31:49 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/23 13:19:14 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:45:34 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PIPEX_H
 
 # include "libft/libft.h"
-# include "ft_printf/libftprintf.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <errno.h>
@@ -35,5 +34,11 @@ typedef struct e_pipex{
 	char	**paths;
 
 }	t_pipex;
+
+void	free_cmd_n_file(t_pipex *pipex);
+void	ft_free(char **strs);
+char	**path_n_command(t_pipex *pipex, char **argv, int el, char **envp);
+char	**get_line(char **envp);
+
 
 #endif

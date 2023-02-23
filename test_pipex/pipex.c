@@ -6,7 +6,7 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 09:31:08 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/02/23 20:36:30 by marco            ###   ########.fr       */
+/*   Updated: 2023/02/23 22:31:52 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,24 +83,58 @@ void	convert(char **strs)
 	}
 }
 
+void	r_trim(t_pipex *pipex)
+{
+	int		i;
+	char	*temp;
+
+	i = -1;
+	while (pipex->cmd1[++i])
+	{
+		if (ft_strchr(pipex->cmd1[i], '\''))
+		{
+			temp = ft_strtrim(pipex->cmd1[i], "\'");
+			free(pipex->cmd1[i]);
+			pipex->cmd1[i] = ft_strdup(temp);
+			free(temp);
+		}
+	}
+	i = -1;
+	while (pipex->cmd2[++i])
+	{
+		if (ft_strchr(pipex->cmd2[i], '\''))
+		{
+			temp = ft_strtrim(pipex->cmd2[i], "\'");
+			free(pipex->cmd2[i]);
+			pipex->cmd2[i] = ft_strdup(temp);
+			free(temp);
+		}
+	}	
+}
+
 int	main(int argc, char **argv, char **envp) 
 {
 	t_pipex	pipex;
 	char	*temp;
 
+	if (argc < 5)
+		return (0);
 	if (pipe(pipex.pipe_fd) == -1)
 		return (1);
 	protect_space(argv[2]);
 	protect_space(argv[3]);
 	pipex.infile_fd = open(argv[1], O_RDONLY);
+	if (pipex.infile_fd <= 0)
+	{
+		printf("%s: %s: file o directory inesistente\n", argv[1], argv[2]);
+		return (1);
+	}
 	pipex.outfile_fd = open(argv[4], O_TRUNC | O_CREAT | O_RDWR);
 	pipex.cmd1 = path_n_command(&pipex, argv, 2, envp);
 	pipex.cmd2 = path_n_command(&pipex, argv, 3, envp);
 	convert(pipex.cmd1);
 	convert(pipex.cmd2);
-	temp = ft_strtrim(pipex.cmd2[1], "\'");
-	free(pipex.cmd2[1]);
-	pipex.cmd2[1] = temp;
+	r_trim(&pipex);
 	if (sub_proc(&pipex) < 0)
 		return (1);
 	close(pipex.pipe_fd[0]);

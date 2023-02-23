@@ -6,7 +6,7 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 19:41:00 by marco             #+#    #+#             */
-/*   Updated: 2023/02/23 19:41:52 by marco            ###   ########.fr       */
+/*   Updated: 2023/02/23 22:22:51 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,28 @@ char	**get_line(char **envp)
 	return (ret);
 }
 
+char	*path_checker(t_pipex *pipex)
+{
+	int	flag;
+	int	i;
+
+	flag = 0;
+	i = -1;
+	while (pipex->paths[++i] != 0)
+	{
+		if (!access(pipex->paths[i], 0))
+		{
+			flag = 1;
+			break ;
+		}	
+	}
+	if (flag)
+		return (pipex->paths[i]);
+	else
+		printf("%s: comando non trovato\n", ft_strrchr(pipex->paths[0], '/') + 1);
+	return (0);
+}
+
 char	**path_n_command(t_pipex *pipex, char **argv, int el, char **envp)
 {
 	char	*temp;
@@ -53,12 +75,12 @@ char	**path_n_command(t_pipex *pipex, char **argv, int el, char **envp)
 		pipex->paths[pipex->cmd_i] = ft_strjoin(temp, command[0]);
 		free(temp);
 	}
-	pipex->cmd_i = -1;
-	while (pipex->paths[++pipex->cmd_i])
-		if (!access(pipex->paths[pipex->cmd_i], 0))
-			break ;
 	free(command[0]);
-	command[0] = ft_strdup(pipex->paths[pipex->cmd_i]);
+	temp = path_checker(pipex);
+	if (!temp)
+		command[0] = 0;
+	else
+		command[0] = ft_strdup(temp);
 	ft_free(pipex->paths);
 	return (command);
 }

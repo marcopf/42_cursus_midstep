@@ -1,0 +1,9 @@
+ciao come va
+questa è una prova
+per vedere come risponde
+il programma a vari tipi di imput
+mi servono moltissime
+molte linee da stampare
+a schermo per vedere se il
+programma funziona correttamente
+sono quasi arrivato

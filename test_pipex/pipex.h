@@ -16,6 +16,7 @@
 typedef struct e_pipex{
     int     pipe_fd[2];
     int     infile_fd;
+    int     outfile_fd;
     int     pid1;
     int     pid2;
     char    **command1;

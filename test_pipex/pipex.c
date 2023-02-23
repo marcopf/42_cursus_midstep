@@ -40,10 +40,11 @@ char **command_maker(char **argv, int argc, int el)
 int main(int argc, char **argv, char **envp) 
 {
 	t_pipex	pipex;
-	
+
 	if (pipe(pipex.pipe_fd) == -1)
 		return (1);
 	pipex.infile_fd = open(argv[1], O_RDONLY);
+	pipex.outfile_fd = open(argv[3], O_RDONLY | O_CREAT);
 	pipex.command1 = command_maker(argv, argc, 2);
 	pipex.command2 = command_maker(argv, argc, 3);
 	pipex.pid1 = fork();
@@ -69,6 +70,8 @@ int main(int argc, char **argv, char **envp)
 	}
 	close(pipex.pipe_fd[0]);
 	close(pipex.pipe_fd[1]);
+	close(pipex.outfile_fd);
+	close(pipex.infile_fd);
 	close(pipex.infile_fd);
 	waitpid(pipex.pid1, NULL, 0);
 	waitpid(pipex.pid2, NULL, 0);

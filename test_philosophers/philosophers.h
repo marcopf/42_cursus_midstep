@@ -22,8 +22,11 @@ struct	s_env;
 
 typedef struct s_philo{
 	pthread_t		philo;
+	pthread_mutex_t	fork;
+	struct timeval	ts;
+	int				eat_count;
+	double			time_elapsed;
 	int				id;
-	int				fork;
 	struct s_env	*back;
 }	t_philo;
 

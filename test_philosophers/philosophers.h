@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 10:45:35 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/03/03 16:01:49 by mpaterno         ###   ########.fr       */
+/*   Updated: 2023/03/04 08:50:14 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <pthread.h>
+#include <sys/time.h>
+#include <time.h>
 
 struct	s_env;
 
@@ -47,5 +49,16 @@ typedef struct s_env{
 }	t_env;
 
 int	ft_atoi(const char *str);
+double	get_msec(struct timeval start, struct timeval end);
+double	get_ts_micro(struct timeval ts);
+double	get_ts(struct timeval ts);
+void	ft_mssleep(int val, t_philo *philo);
+void	*time_calc(void *void_philo);
+void	try_to_eat(t_env *env, int i);
+void	set_to_sleep(t_philo *philo);
+int		threads_setter(char **argv, t_env *env);
+void	thread_wait(t_env *env);
+void	destroy_all_mutex(t_env *env);
+void	*routine(void *void_philo);
 
 #endif

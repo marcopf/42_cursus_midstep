@@ -1,6 +1,6 @@
 NAME	= philo
 HEADER	= ${NAME:.a=.h}
-SRCS	=	philosophers.c mini_libft/ft_atoi.c time_func.c philosopher_life.c thread_func.c
+SRCS	=	philosophers.c mini_libft/ft_atoi.c mini_libft/ft_itoa.c philosopher_life.c thread_func.c
 OBJS	= ${SRCS:.c=.o}
 BOBJS	= ${BSRCS:.c=.o}
 FLAGS	= -Wall -Werror -Wextra

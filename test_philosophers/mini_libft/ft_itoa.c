@@ -6,15 +6,15 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:22:51 by marco             #+#    #+#             */
-/*   Updated: 2023/03/04 16:09:02 by marco            ###   ########.fr       */
+/*   Updated: 2023/03/05 21:15:01 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../philosophers.h"
 
-static size_t	ft_dim(int n)
+static unsigned long	ft_dim(unsigned long n)
 {
-	size_t	dim;
+	double	dim;
 
 	if (!n)
 		return (1);
@@ -29,18 +29,18 @@ static size_t	ft_dim(int n)
 	return (dim);
 }
 
-static int	ft_abs(int n)
+static unsigned long	ft_abs(unsigned long n)
 {
 	if (n < 0)
 		return (-n);
 	return (n);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(unsigned long n)
 {
-	char	*num;
-	size_t	dim;
-	int		m;
+	char			*num;
+	size_t			dim;
+	unsigned long	m;
 
 	dim = ft_dim(n);
 	num = (char *) malloc((dim + 1) * sizeof (char));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher_life.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 08:44:31 by marco             #+#    #+#             */
-/*   Updated: 2023/03/05 22:29:07 by marco            ###   ########.fr       */
+/*   Updated: 2023/03/06 11:30:00 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	philo_say(const char *str, t_philo *philo)
 {
 	char	*ts;
 
-	ts = ft_itoa(get_ts(philo->ts));
+	ts = ft_itoa(get_ts(philo->ts) - philo->back->origin_time);
 	pthread_mutex_lock(&philo->back->writing);
 	if (philo->back->is_alive)
 		printf("%s %s %s\n", ts, philo->id_str, str);
@@ -57,13 +57,14 @@ void	*timer(void *void_philo)
 
 	philo = (t_philo *)void_philo;
 	philo->init_ts = get_ts(philo->ts);
-	while (((get_ts(philo->ts) - philo->init_ts) < philo->back->time_to_die)
+	while (((get_ts(philo->ts) - philo->init_ts) <= philo->back->time_to_die)
 		&& (philo->back->philosopher_n))
 		usleep(100);
 	if ((!philo->back->philosopher_n))
 		philo->back->is_alive = 0;
 	philo_say("died", philo);
 	philo->back->is_alive = 0;
+	return (0);
 }
 
 void	*philo_routine(void *void_philo)
@@ -72,12 +73,12 @@ void	*philo_routine(void *void_philo)
 
 	philo = (t_philo *)void_philo;
 	if (philo->id % 2 == 0)
-		usleep((philo->back->time_to_die / 50) * 1000);
+		usleep(50 * 1000);
 	if (pthread_create(&philo->clock, 0, &timer, void_philo) != 0)
 		return (0);
 	pthread_detach(philo->clock);
 	usleep(100);
-	while (philo->back->is_alive)
+	while (philo->back->is_alive && philo->back->how_many_eat != 0)
 	{
 		try_to_eat(philo->back, philo->id);
 		if (philo->eat_count == philo->back->how_many_eat)

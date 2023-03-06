@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mpaterno <mpaterno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 10:45:35 by mpaterno          #+#    #+#             */
-/*   Updated: 2023/03/05 21:15:11 by marco            ###   ########.fr       */
+/*   Updated: 2023/03/06 11:50:12 by mpaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ struct	s_env;
 typedef struct s_philo{
 	int				fork_index;
 	int				eat_count;
-	double			init_ts;
-	double			sleep_timestamp;
 	int				id;
 	char			*id_str;
+	double			init_ts;
+	double			sleep_timestamp;
 	pthread_t		philo;
 	pthread_t		clock;
 	pthread_mutex_t	fork;
@@ -59,5 +59,7 @@ void	thread_wait(t_env *env);
 void	destroy_all_mutex(t_env *env);
 void	*philo_routine(void *void_philo);
 char	*ft_itoa(unsigned long n);
+int		arg_check(char **argv);
+int		thread_start(t_env *env);
 
 #endif
